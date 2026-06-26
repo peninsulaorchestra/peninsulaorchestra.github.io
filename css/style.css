@@ -105,6 +105,12 @@ nav.main-nav a.active { color: var(--black); border-bottom-color: var(--black); 
   color: #fff; text-align: center;
   padding: 150px 24px;
 }
+/* Full-viewport hero used on the homepage, matching the original */
+.hero.hero--cover {
+  min-height: calc(100vh - 90px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 60px 24px;
+}
 .hero h1 { color: #fff; font-size: clamp(2.6rem, 6vw, 4.6rem); margin: 0 0 20px; font-weight: 700; }
 .hero p {
   font-family: var(--sans); font-size: clamp(1.05rem, 2.2vw, 1.35rem);
