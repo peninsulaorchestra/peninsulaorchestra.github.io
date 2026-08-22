@@ -66,7 +66,9 @@ Put the image in `images/`, then point a gallery entry at it:
      minute later.
    - **Red X** — click **Details** to see which file and line is wrong. Fix it
      with the pencil icon on the same pull request and the check runs again.
-5. After merging, click **Delete branch**. Nothing is lost.
+
+The branch is deleted automatically once the pull request is merged, so there
+is nothing to tidy up afterwards.
 
 Nothing you do in a pull request affects the live site until it is merged, so
 there is no way to break the site for visitors. If you get in a mess, close the
