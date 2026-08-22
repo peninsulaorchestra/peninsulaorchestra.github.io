@@ -2,7 +2,7 @@
 layout: default
 permalink: /events/
 head_title: Events &amp; News — Peninsula Orchestra
-description: Upcoming concerts, news and links from the Peninsula Orchestra in Niagara, Ontario.
+description: Upcoming concerts, past programmes, news and links from the Peninsula Orchestra in Niagara, Ontario.
 banner_title: Events, News &amp; Links
 banner_subtitle: Upcoming concerts &amp; announcements
 ---
@@ -12,23 +12,42 @@ banner_subtitle: Upcoming concerts &amp; announcements
     <hr class="divider" />
     <p class="section-intro">Our season runs mid-September through June, with community concerts throughout.</p>
 
+    {%- if site.data.events and site.data.events.size > 0 %}
     {%- for event in site.data.events %}
-    <div class="event">
-      <div class="date">
-        {%- if event.date %}
-        <span class="month">{{ event.date | date: "%b" }}</span>
-        <span class="day">{{ event.date | date: "%-d" }}</span>
-        <span class="year">{{ event.date | date: "%Y" }}</span>
-        {%- else %}
-        <span class="month">Date</span>
-        <span class="day">TBA</span>
-        <span class="year">{{ event.year }}</span>
-        {%- endif %}
-      </div>
-      <div class="body">
-        <h3>{{ event.title }}</h3>
-        <p>{{ event.description }}</p>
-      </div>
+    {% include event.html event=event %}
+    {%- endfor %}
+    {%- else %}
+    <p class="muted text-center">No concerts are announced just yet. Follow us on
+      <a href="https://www.facebook.com/profile.php?id=100064857121631">Facebook</a>
+      or <a href="mailto:{{ site.contact_email }}">email us</a> to hear when the next
+      one is confirmed.</p>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="alt-bg">
+  <div class="container narrow">
+    <h2 class="section-title">Past Concerts</h2>
+    <hr class="divider" />
+    {%- for event in site.data.past_events %}
+    {% include event.html event=event %}
+    {%- endfor %}
+  </div>
+</section>
+
+<section>
+  <div class="container narrow">
+    <h2 class="section-title">News</h2>
+    <hr class="divider" />
+    {%- for item in site.data.news %}
+    <div class="card">
+      <h3>{{ item.title }}</h3>
+      {%- assign paragraphs = item.body | strip | split: "
+
+" %}
+      {%- for p in paragraphs %}
+      <p>{{ p }}</p>
+      {%- endfor %}
     </div>
     {%- endfor %}
   </div>
@@ -36,12 +55,18 @@ banner_subtitle: Upcoming concerts &amp; announcements
 
 <section class="alt-bg">
   <div class="container narrow">
-    <h2 class="section-title">News</h2>
+    <h2 class="section-title">Guest Artists</h2>
     <hr class="divider" />
-    {%- for item in site.data.news %}
+    {%- for artist in site.data.artists %}
     <div class="card">
-      <h3>{{ item.title }}</h3>
-      <p>{{ item.body }}</p>
+      <h3>{{ artist.name }}</h3>
+      <p class="artist-role">{{ artist.role }}</p>
+      {%- assign paragraphs = artist.bio | strip | split: "
+
+" %}
+      {%- for p in paragraphs %}
+      <p>{{ p }}</p>
+      {%- endfor %}
     </div>
     {%- endfor %}
   </div>

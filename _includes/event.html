@@ -1,0 +1,41 @@
+{%- assign event = include.event %}
+<div class="event">
+  <div class="date">
+    {%- if event.date %}
+    <span class="month">{{ event.date | date: "%b" }}</span>
+    {%- if event.date_end %}
+    <span class="day">{{ event.date | date: "%-d" }}–{{ event.date_end | date: "%-d" }}</span>
+    {%- else %}
+    <span class="day">{{ event.date | date: "%-d" }}</span>
+    {%- endif %}
+    <span class="year">{{ event.date | date: "%Y" }}</span>
+    {%- elsif event.date_text %}
+    <span class="day date-text">{{ event.date_text }}</span>
+    {%- else %}
+    <span class="month">Date</span>
+    <span class="day">TBA</span>
+    <span class="year">{{ event.year }}</span>
+    {%- endif %}
+  </div>
+  <div class="body">
+    <h3>{{ event.title }}</h3>
+    {%- if event.time or event.venue %}
+    <p class="event-where">
+      {%- if event.time %}{{ event.time }}{% endif %}
+      {%- if event.time and event.venue %} · {% endif %}
+      {%- if event.venue %}{{ event.venue }}{% endif %}
+      {%- if event.address %}, {{ event.address }}{% endif %}
+    </p>
+    {%- endif %}
+    {%- if event.soloist %}<p class="event-where">Featuring {{ event.soloist }}</p>{% endif %}
+    {%- if event.description %}<p>{{ event.description }}</p>{% endif %}
+    {%- if event.programme %}
+    <ul class="programme">
+      {%- for work in event.programme %}
+      <li>{{ work }}</li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+    {%- if event.tickets %}<p class="event-where">Tickets: {{ event.tickets }}</p>{% endif %}
+  </div>
+</div>

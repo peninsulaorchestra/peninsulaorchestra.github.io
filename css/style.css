@@ -293,3 +293,34 @@ section { padding: 88px 0; }
 .grid.items-start { align-items: start; }
 .divider.left { margin-left: 0; }
 .form-grid { margin-left: 0; }
+
+/* ── Events: programmes, artist bios, and event metadata ───── */
+.event-where {
+  margin: 0 0 8px;
+  color: var(--gray);
+  font-size: 0.9375rem;
+}
+.programme {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.programme li {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9375rem;
+}
+.artist-role {
+  margin: -6px 0 14px;
+  color: var(--gray);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.card + .card { margin-top: 24px; }
+.date .date-text {
+  font-size: 1.3rem;
+  line-height: 1.25;
+  padding: 0 10px;
+}

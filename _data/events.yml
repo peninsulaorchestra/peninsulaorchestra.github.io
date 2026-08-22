@@ -1,13 +1,10 @@
-# Upcoming concerts, newest first.
+# UPCOMING concerts. Newest first.
 #
-# Give an entry a real `date:` (YYYY-MM-DD) and the month/day/year on the
-# left of the listing fill themselves in. If the date isn't settled yet,
-# leave `date:` off and set `year:` instead — it shows as "Date TBA".
-
-- title: Season Opening Concert
-  year: 2026
-  description: Details to be announced. Check back soon or contact us for the latest schedule.
-
-- title: Community Concert
-  year: 2026
-  description: A program of varied music shared with our Niagara community.
+# Give an entry a real `date:` (YYYY-MM-DD) and the month/day/year block on the
+# left fills itself in. If the date isn't settled, leave `date:` off and set
+# `year:` instead — it shows as "Date TBA".
+#
+# Once a concert has happened, move the entry to _data/past-events.yml.
+#
+# Nothing is currently announced. Add entries here and the "Upcoming Concerts"
+# section replaces its placeholder message automatically.
