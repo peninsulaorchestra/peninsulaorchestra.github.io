@@ -73,4 +73,47 @@
       else if (e.key === 'ArrowRight') show(current + 1);
     });
   }
+
+  // Cookie notice. The chat widget is third-party and sets cookies, so it is
+  // not loaded until someone accepts. Declining loads nothing at all.
+  var notice = document.querySelector('#cookie-notice');
+  if (notice) {
+    var KEY = 'po-cookie-consent';
+
+    function loadChat() {
+      var src = notice.getAttribute('data-tawk-src');
+      if (!src || window.Tawk_API) return;
+      window.Tawk_API = window.Tawk_API || {};
+      window.Tawk_LoadStart = new Date();
+      var s1 = document.createElement('script'), s0 = document.getElementsByTagName('script')[0];
+      s1.async = true;
+      s1.src = src;
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    }
+
+    function remember(value) {
+      try { localStorage.setItem(KEY, value); } catch (e) { /* private mode */ }
+    }
+
+    var choice = null;
+    try { choice = localStorage.getItem(KEY); } catch (e) { /* private mode */ }
+
+    if (choice === 'accepted') {
+      loadChat();
+    } else if (choice !== 'declined') {
+      notice.hidden = false;
+    }
+
+    notice.querySelector('[data-cookie-accept]').addEventListener('click', function () {
+      remember('accepted');
+      notice.hidden = true;
+      loadChat();
+    });
+    notice.querySelector('[data-cookie-decline]').addEventListener('click', function () {
+      remember('declined');
+      notice.hidden = true;
+    });
+  }
 })();

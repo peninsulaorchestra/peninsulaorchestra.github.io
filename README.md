@@ -22,6 +22,7 @@ the live site.
 | The About page text | `about.md` |
 | Menu, contact email, footer year | `_config.yml` |
 | Turning the chat widget on or off | `_config.yml` (`tawk:`) |
+| The cookie notice wording | `_includes/tawk.html` |
 | Colours, fonts, spacing | `css/style.css` |
 
 ### Adding a concert
