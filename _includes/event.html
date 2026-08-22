@@ -10,7 +10,18 @@
     {%- endif %}
     <span class="year">{{ event.date | date: "%Y" }}</span>
     {%- elsif event.date_text %}
-    <span class="day date-text">{{ event.date_text }}</span>
+    {%- assign months = "January,February,March,April,May,June,July,August,September,October,November,December" | split: "," %}
+    {%- assign parts = event.date_text | split: " " %}
+    {%- assign first = parts | first %}
+    {%- if months contains first %}
+    {%- assign big = first | slice: 0, 3 | upcase %}
+    {%- else %}
+    {%- assign big = first | upcase %}
+    {%- endif %}
+    <span class="day{% if big.size > 3 %} day--long{% endif %}">{{ big }}</span>
+    {%- if parts.size > 1 %}
+    <span class="year">{{ parts | last }}</span>
+    {%- endif %}
     {%- else %}
     <span class="month">Date</span>
     <span class="day">TBA</span>
