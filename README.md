@@ -52,6 +52,30 @@ Put the image in `images/`, then point a gallery entry at it:
   image: /images/concert.jpg
 ```
 
+## If you make a mistake
+
+The content files are YAML, which is picky about punctuation and indentation.
+If something is off, **the live site does not break** — it keeps serving the
+last good version.
+
+Every change is automatically checked. Within about a minute of committing,
+GitHub shows either a green tick or a red X next to your commit:
+
+- **Green tick** — your change is live.
+- **Red X** — something is wrong and the site has *not* updated. Click the X,
+  then "Details", and the message names the file and line number.
+
+The usual culprits:
+
+| Symptom | Fix |
+| --- | --- |
+| `mapping values are not allowed here` | A missing space after a colon — write `title: Concert`, not `title:Concert` |
+| `could not find expected ':'` | Indentation is inconsistent; every field under an entry needs the same number of spaces |
+| A value containing `:` or `#` | Wrap it in quotes: `title: "Star Wars: A New Hope"` |
+
+If you get stuck, the safest fix is to revert: open the commit, click the "..."
+menu and choose Revert. That puts things back and you can try again.
+
 ## How it fits together
 
 - `_layouts/default.html` — the header, nav and footer wrapped around every

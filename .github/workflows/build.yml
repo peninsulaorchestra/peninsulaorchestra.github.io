@@ -1,0 +1,65 @@
+name: Build check
+
+# Runs on every change so a mistake shows up as a red X within a minute,
+# instead of the site quietly failing to update.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the content files are valid YAML
+        run: |
+          python3 - <<'PY'
+          import glob, sys, re
+
+          try:
+              import yaml
+          except ImportError:
+              import subprocess
+              subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", "pyyaml"])
+              import yaml
+
+          failed = False
+          for path in sorted(glob.glob("_data/*.yml")) + ["_config.yml"]:
+              try:
+                  yaml.safe_load(open(path))
+                  print(f"ok    {path}")
+              except yaml.YAMLError as e:
+                  failed = True
+                  mark = getattr(e, "problem_mark", None)
+                  where = f" on line {mark.line + 1}" if mark else ""
+                  print(f"\nFAILED {path}{where}")
+                  print(f"  {getattr(e, 'problem', e)}")
+                  print("  Common causes: a missing space after a colon, inconsistent")
+                  print("  indentation, or a value containing : or # that needs quoting.\n")
+
+          for path in sorted(glob.glob("*.md") + glob.glob("*.html")):
+              text = open(path).read()
+              if not text.startswith("---"):
+                  continue
+              front = text.split("---", 2)[1]
+              try:
+                  yaml.safe_load(front)
+                  print(f"ok    {path} (front matter)")
+              except yaml.YAMLError as e:
+                  failed = True
+                  print(f"\nFAILED {path} — the settings between the --- lines at the top")
+                  print(f"  {getattr(e, 'problem', e)}\n")
+
+          sys.exit(1 if failed else 0)
+          PY
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Build the site
+        run: bundle exec jekyll build --strict_front_matter --trace
