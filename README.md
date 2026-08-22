@@ -1,67 +1,71 @@
-# Peninsula Orchestra — website
+# peninsulaorchestra.ca
 
-A static website for the Peninsula Orchestra (Niagara, Ontario), built as plain
-HTML/CSS/JS with no build step, ready to host on **GitHub Pages**.
+The Peninsula Orchestra website. Built with **Jekyll**, which GitHub Pages
+compiles automatically on every push — there is no build step to run and
+nothing to install.
 
-## Files
+## Editing the site
 
+Most changes don't require touching HTML. Open the file on github.com, click
+the pencil icon, edit, and commit — the live site updates in about a minute.
+
+| To change… | Edit this file |
+| --- | --- |
+| Concert listings | `_data/events.yml` |
+| News announcements | `_data/news.yml` |
+| Links on the Events page | `_data/links.yml` |
+| The executive roster | `_data/executive.yml` |
+| Photo gallery tiles | `_data/gallery.yml` |
+| The About page text | `about.md` |
+| Menu, contact email, footer year | `_config.yml` |
+| Colours, fonts, spacing | `css/style.css` |
+
+### Adding a concert
+
+Open `_data/events.yml` and add an entry:
+
+```yaml
+- date: 2026-09-14
+  title: Season Opening Concert
+  description: Beethoven's Fifth, with guest soloist.
 ```
-index.html      Home
-about.html      About Us
-gallery.html    Photo Gallery
-events.html     Events, News & Links
-contact.html    Contact Us + Executive
-css/style.css   All styling
-js/main.js      Mobile nav + contact form (mailto)
-images/         Add photos here
-CNAME           Custom domain (peninsula-orchestra.com)
-.nojekyll       Tells GitHub Pages to serve files as-is
+
+The month, day and year on the left of the listing fill in automatically. If
+the date isn't settled yet, leave `date:` off and use `year: 2026` instead —
+it shows as "Date TBA".
+
+### Adding a photo
+
+Put the image in `images/`, then point a gallery entry at it:
+
+```yaml
+- caption: Concert performance
+  image: /images/concert.jpg
 ```
 
-## Preview locally
+## How it fits together
 
-```bash
-cd /Users/matthew/code/orch
-python3 -m http.server 8000
-# open http://localhost:8000
+- `_layouts/default.html` — the header, nav and footer wrapped around every
+  page. Change the menu here once instead of in five files.
+- `_layouts/page.html` — adds the centred prose column used by the About page.
+- `_includes/facts.html` — the grey label/value list used in a few places.
+- `_data/*.yml` — the content that repeats: concerts, news, people, photos.
+- `*.html` / `*.md` — one file per page, holding just that page's content.
+
+## Working locally (optional)
+
+You don't need this to make content edits — the table above covers those
+through github.com. But if you want to preview before publishing:
+
+```sh
+brew install ruby@3.3
+export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
+bundle install
+bundle exec jekyll serve      # http://localhost:4000, reloads as you edit
 ```
 
-## Deploy to GitHub Pages
+Ruby **3.3** specifically: the `Gemfile` pins the `github-pages` gem, which is
+what GitHub runs server-side, and one of its dependencies caps Ruby below 4.0.
+Pinning it this way means what you see locally is what gets published.
 
-1. Create a GitHub repo and push this directory:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial site"
-   git branch -M main
-   git remote add origin git@github.com:<you>/<repo>.git
-   git push -u origin main
-   ```
-2. In the repo: **Settings → Pages → Build and deployment**.
-   - Source: **Deploy from a branch**
-   - Branch: **main** / **/ (root)** → Save.
-3. The site goes live at the subpath URL:
-
-   ```
-   https://<you>.github.io/<repo>/
-   ```
-
-   All links here are relative, so the site works as-is under that subpath —
-   no further configuration needed.
-
-### Later: switch to the custom domain
-
-When you're ready to move to `peninsula-orchestra.com`:
-   - Add a file named `CNAME` at the repo root containing the single line
-     `peninsula-orchestra.com`.
-   - At your DNS provider, point the domain at GitHub Pages
-     (`A` records to GitHub's IPs, or a `CNAME` for `www`). See
-     [GitHub's custom domain docs](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site).
-   - Enable **Enforce HTTPS** once the certificate is issued.
-
-## Notes
-
-- The contact form has no backend (GitHub Pages is static), so it opens the
-  visitor's email app pre-addressed to `info@peninsula-orchestra.com`. For a
-  real submission form, use a service like Formspree or Netlify Forms.
-- Content (events, conductor, executive) is editable directly in the HTML.
+macOS ships Ruby 2.6, which is too old — hence the Homebrew install.

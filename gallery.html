@@ -1,62 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Photo Gallery — Peninsula Orchestra</title>
-  <meta name="description" content="Photos from Peninsula Orchestra rehearsals and community concerts in Niagara." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-
-  <header class="site-header solid">
-    <div class="container">
-      <a class="brand" href="index.html">
-        <span class="name">Peninsula Orchestra</span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="gallery.html" class="active">Photo Gallery</a></li>
-          <li><a href="events.html">Events, News and Links</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </nav>
+---
+layout: default
+permalink: /gallery/
+head_title: Photo Gallery — Peninsula Orchestra
+description: Photos of the Peninsula Orchestra in rehearsal and in concert.
+banner_title: Photo Gallery
+banner_subtitle: Moments from rehearsals &amp; concerts
+---
+<section>
+  <div class="container">
+    <p class="section-intro">A glimpse of the orchestra in action.</p>
+    <div class="gallery">
+      {%- for photo in site.data.gallery %}
+      {%- if photo.image %}
+      <div class="tile" style="background-image:url('{{ photo.image | relative_url }}')" role="img" aria-label="{{ photo.caption }}"></div>
+      {%- else %}
+      <div class="tile ph">{{ photo.caption }}</div>
+      {%- endif %}
+      {%- endfor %}
     </div>
-  </header>
-
-  <section class="page-banner">
-    <h1>Photo Gallery</h1>
-    <p>Moments from rehearsals &amp; concerts</p>
-  </section>
-
-  <section>
-    <div class="container">
-      <p class="section-intro">A glimpse of the orchestra in action. To add your own photos, drop image files into the <code>images/</code> folder and replace the placeholder tiles below with <code>&lt;img&gt;</code> tags or background images.</p>
-      <div class="gallery">
-        <div class="tile ph">Concert performance</div>
-        <div class="tile ph">Monday rehearsal</div>
-        <div class="tile ph">The string section</div>
-        <div class="tile ph">Brass &amp; winds</div>
-        <div class="tile ph">Conductor George Cleland</div>
-        <div class="tile ph">Community concert</div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        Copyright © 2018 Peninsula Orchestra - All Rights Reserved.
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
-</html>
+  </div>
+</section>

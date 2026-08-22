@@ -1,103 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Events &amp; News — Peninsula Orchestra</title>
-  <meta name="description" content="Upcoming concerts, news and links from the Peninsula Orchestra in Niagara, Ontario." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
+---
+layout: default
+permalink: /events/
+head_title: Events &amp; News — Peninsula Orchestra
+description: Upcoming concerts, news and links from the Peninsula Orchestra in Niagara, Ontario.
+banner_title: Events, News &amp; Links
+banner_subtitle: Upcoming concerts &amp; announcements
+---
+<section>
+  <div class="container narrow">
+    <h2 class="section-title">Upcoming Concerts</h2>
+    <hr class="divider" />
+    <p class="section-intro">Our season runs mid-September through June, with community concerts throughout.</p>
 
-  <header class="site-header solid">
-    <div class="container">
-      <a class="brand" href="index.html">
-        <span class="name">Peninsula Orchestra</span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="gallery.html">Photo Gallery</a></li>
-          <li><a href="events.html" class="active">Events, News and Links</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <section class="page-banner">
-    <h1>Events, News &amp; Links</h1>
-    <p>Upcoming concerts &amp; announcements</p>
-  </section>
-
-  <section>
-    <div class="container" style="max-width:760px;">
-      <h2 class="section-title">Upcoming Concerts</h2>
-      <hr class="divider" />
-      <p class="section-intro">Our season runs mid-September through June, with community concerts throughout. Edit the entries below to keep the schedule current.</p>
-
-      <div class="event">
-        <div class="date">
-          <span class="month">Date</span>
-          <span class="day">TBA</span>
-          <span class="year">2026</span>
-        </div>
-        <div class="body">
-          <h3>Season Opening Concert</h3>
-          <p>Details to be announced. Check back soon or contact us for the latest schedule.</p>
-        </div>
+    {%- for event in site.data.events %}
+    <div class="event">
+      <div class="date">
+        {%- if event.date %}
+        <span class="month">{{ event.date | date: "%b" }}</span>
+        <span class="day">{{ event.date | date: "%-d" }}</span>
+        <span class="year">{{ event.date | date: "%Y" }}</span>
+        {%- else %}
+        <span class="month">Date</span>
+        <span class="day">TBA</span>
+        <span class="year">{{ event.year }}</span>
+        {%- endif %}
       </div>
-
-      <div class="event">
-        <div class="date">
-          <span class="month">Date</span>
-          <span class="day">TBA</span>
-          <span class="year">2026</span>
-        </div>
-        <div class="body">
-          <h3>Community Concert</h3>
-          <p>A program of varied music shared with our Niagara community.</p>
-        </div>
+      <div class="body">
+        <h3>{{ event.title }}</h3>
+        <p>{{ event.description }}</p>
       </div>
     </div>
-  </section>
+    {%- endfor %}
+  </div>
+</section>
 
-  <section class="alt-bg">
-    <div class="container" style="max-width:760px;">
-      <h2 class="section-title">News</h2>
-      <hr class="divider" />
-      <div class="card">
-        <h3>Rehearsals resume in September</h3>
-        <p>The orchestra rehearses every Monday evening, 7:30–9:30 pm, at Holy Trillium United Church, 415 Linwell Rd., St. Catharines. New members are welcome — come and play with us.</p>
-      </div>
+<section class="alt-bg">
+  <div class="container narrow">
+    <h2 class="section-title">News</h2>
+    <hr class="divider" />
+    {%- for item in site.data.news %}
+    <div class="card">
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.body }}</p>
     </div>
-  </section>
+    {%- endfor %}
+  </div>
+</section>
 
-  <section>
-    <div class="container" style="max-width:760px;">
-      <h2 class="section-title">Links</h2>
-      <hr class="divider" />
-      <ul class="facts">
-        <li><span class="label">Rehearsal venue</span><span>Holy Trillium United Church, St. Catharines</span></li>
-        <li><span class="label">Brock University</span><span>String Orchestra — conducted by George Cleland</span></li>
-        <li><span class="label">Email us</span><span><a href="mailto:info@peninsula-orchestra.com">info@peninsula-orchestra.com</a></span></li>
-      </ul>
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-bottom">
-        Copyright © 2018 Peninsula Orchestra - All Rights Reserved.
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
-</html>
+<section>
+  <div class="container narrow">
+    <h2 class="section-title">Links</h2>
+    <hr class="divider" />
+    <ul class="facts">
+      {%- for link in site.data.links %}
+      <li><span class="label">{{ link.label }}</span><span>{{ link.value }}</span></li>
+      {%- endfor %}
+      <li><span class="label">Email us</span><span><a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></span></li>
+    </ul>
+  </div>
+</section>

@@ -282,3 +282,14 @@ section { padding: 88px 0; }
   section { padding: 56px 0; }
   .form-grid { max-width: 100%; }
 }
+
+/* ============================================================
+   Utilities — these replace the inline style="..." attributes
+   that used to be scattered through the HTML pages.
+   ============================================================ */
+.container.narrow { max-width: 760px; }
+.text-center { text-align: center; }
+.muted { color: var(--gray); }
+.grid.items-start { align-items: start; }
+.divider.left { margin-left: 0; }
+.form-grid { margin-left: 0; }
