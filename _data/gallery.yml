@@ -1,12 +1,64 @@
-# Photo gallery tiles.
+# Photo gallery. Each entry needs a `file` (the name in images/gallery/thumbs
+# and images/gallery/full — same name in both) and a `caption`.
 #
-# To show a real photo: put the file in images/ and set `image:` to its path,
-# e.g. image: /images/concert.jpg
-# Leave `image:` off and the tile shows the caption as a grey placeholder.
+# To add a photo: save it at about 700px wide in images/gallery/thumbs/ and at
+# about 1600px wide in images/gallery/full/, using the same filename, then add
+# an entry here. The thumbnail is what loads with the page; the full version is
+# fetched only when someone opens the photo.
 
-- caption: Concert performance
-- caption: Monday rehearsal
-- caption: The string section
-- caption: Brass & winds
-- caption: Conductor George Cleland
-- caption: Community concert
+- file: rehearsal-wide.jpg
+  caption: The full orchestra in rehearsal
+
+- file: conductor.jpg
+  caption: Conductor George Cleland
+
+- file: strings-rehearsal.jpg
+  caption: A Monday evening rehearsal
+
+- file: french-horns.jpg
+  caption: The horn section
+
+- file: cello-section.jpg
+  caption: Cellos in rehearsal
+
+- file: violins.jpg
+  caption: Violins
+
+- file: clarinets.jpg
+  caption: Clarinets
+
+- file: woodwinds.jpg
+  caption: Woodwinds in rehearsal
+
+- file: double-bass.jpg
+  caption: Double bass
+
+- file: flute.jpg
+  caption: Flute
+
+- file: horn-coaching.jpg
+  caption: Coaching the horn section
+
+- file: cellos-rehearsal.jpg
+  caption: Strings in rehearsal
+
+- file: concert-strings.jpg
+  caption: In concert
+
+- file: concert-hall.jpg
+  caption: Playing to a full room
+
+- file: concert-audience.jpg
+  caption: A community concert
+
+- file: chamber-concert.jpg
+  caption: A chamber concert
+
+- file: orchestra-on-stage.jpg
+  caption: On stage
+
+- file: strings-church.jpg
+  caption: Strings in concert
+
+- file: members.jpg
+  caption: Orchestra members

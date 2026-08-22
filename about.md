@@ -49,6 +49,8 @@ There are no auditions required, nor restrictions as to age.**
 
 ## Our Conductor
 
+![Conductor George Cleland directing the orchestra](/images/conductor.jpg)
+
 The Peninsula Orchestra welcomed **George Cleland** as conductor in the 2007
 season. Violinist and violist, George is the Music Coordinator for the Niagara
 Suzuki Association and the viola coach for the Niagara Youth Orchestra, and has
