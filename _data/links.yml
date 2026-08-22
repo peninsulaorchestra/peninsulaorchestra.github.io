@@ -1,0 +1,8 @@
+# The "Links" list at the bottom of the Events page.
+# `value:` may contain HTML, e.g. a link.
+
+- label: Rehearsal venue
+  value: Holy Trillium United Church, St. Catharines
+
+- label: Brock University
+  value: String Orchestra — conducted by George Cleland

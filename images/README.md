@@ -1,15 +1,16 @@
 # Images
 
-Drop photos here (e.g. `concert.jpg`) and reference them in `gallery.html`.
+`hero.jpg` is the full-bleed photo behind the homepage banner. Replacing that
+file changes the homepage image.
 
-To turn a placeholder tile into a real photo, replace:
+To add a gallery photo:
 
-```html
-<div class="tile ph">Concert performance</div>
+1. Drop the image file in this folder, e.g. `concert.jpg`.
+2. Open `_data/gallery.yml` and add its path to the matching entry:
+
+```yaml
+- caption: Concert performance
+  image: /images/concert.jpg
 ```
 
-with:
-
-```html
-<div class="tile" style="background-image:url('images/concert.jpg')"></div>
-```
+An entry with no `image:` shows as a grey placeholder tile with the caption on it.

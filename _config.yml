@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────────────────────
+# Site-wide settings. Change something here and it updates
+# everywhere on the site at once.
+# ─────────────────────────────────────────────────────────────
+
+title: Peninsula Orchestra
+tagline: We are a group of serious amateur musicians in Niagara enjoying a variety of music and sharing it with community concerts!
+description: >-
+  The Peninsula Orchestra is a group of serious amateur musicians in Ontario's
+  Niagara region, enjoying a variety of music and sharing it through community concerts.
+url: https://peninsulaorchestra.ca
+
+# Used on the contact page, the events page, and by the contact form.
+contact_email: info@peninsula-orchestra.com
+
+# Shown in the footer of every page.
+copyright_year: 2018
+
+# The menu across the top of every page. Reorder or rename here.
+nav:
+  - title: Home
+    url: /
+  - title: About Us
+    url: /about/
+  - title: Photo Gallery
+    url: /gallery/
+  - title: Events, News and Links
+    url: /events/
+  - title: Contact Us
+    url: /contact/
+
+plugins:
+  - jekyll-sitemap
+
+exclude:
+  - README.md
+  - images/README.md

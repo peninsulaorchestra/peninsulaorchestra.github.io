@@ -1,0 +1,5 @@
+<ul class="facts">
+  {%- for fact in include.items %}
+  <li><span class="label">{{ fact.label }}</span><span>{{ fact.value }}</span></li>
+  {%- endfor %}
+</ul>
