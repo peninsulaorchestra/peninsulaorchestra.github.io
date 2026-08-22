@@ -32,6 +32,12 @@ nav:
 plugins:
   - jekyll-sitemap
 
+# Files kept out of the built site. Note this REPLACES Jekyll's default
+# exclude list, so the build tooling has to be listed explicitly.
 exclude:
   - README.md
   - images/README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .bundle
