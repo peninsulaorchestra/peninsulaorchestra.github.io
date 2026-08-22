@@ -6,17 +6,38 @@ description: Photographs of the Peninsula Orchestra in rehearsal and in concert 
 banner_title: Photo Gallery
 banner_subtitle: Moments from rehearsals &amp; concerts
 ---
-<section>
+<section class="gallery-section">
   <div class="container">
-    <p class="section-intro">A glimpse of the orchestra in action. Select any photograph to see it larger.</p>
-    <div class="gallery">
+    <p class="section-intro">A glimpse of the orchestra in action.</p>
+  </div>
+
+  <div class="stage" id="stage">
+    <button class="stage-nav stage-prev" type="button" aria-label="Previous photograph">&#8249;</button>
+    <div class="stage-viewport">
+      <div class="stage-track" id="stage-track">
+        {%- for photo in site.data.gallery %}
+        <figure class="stage-slide{% if forloop.first %} is-active{% endif %}" data-index="{{ forloop.index0 }}">
+          <img {% if forloop.index0 < 2 %}src{% else %}data-src{% endif %}="{{ '/images/gallery/full/' | append: photo.file | relative_url }}"
+               alt="{{ photo.caption }}" />
+        </figure>
+        {%- endfor %}
+      </div>
+    </div>
+    <button class="stage-nav stage-next" type="button" aria-label="Next photograph">&#8250;</button>
+  </div>
+
+  <div class="container">
+    <p class="stage-caption">
+      <span class="stage-counter" id="stage-counter">1 / {{ site.data.gallery | size }}</span>
+      <span id="stage-text">{{ site.data.gallery[0].caption }}</span>
+    </p>
+
+    <div class="filmstrip" id="filmstrip">
       {%- for photo in site.data.gallery %}
-      <button class="tile" type="button"
-              data-full="{{ '/images/gallery/full/' | append: photo.file | relative_url }}"
-              data-caption="{{ photo.caption }}">
+      <button class="film{% if forloop.first %} is-active{% endif %}" type="button"
+              data-index="{{ forloop.index0 }}" aria-label="{{ photo.caption }}">
         <img src="{{ '/images/gallery/thumbs/' | append: photo.file | relative_url }}"
-             alt="{{ photo.caption }}" loading="lazy" width="700" height="467" />
-        <span class="tile-caption">{{ photo.caption }}</span>
+             alt="" loading="lazy" width="700" height="467" />
       </button>
       {%- endfor %}
     </div>
