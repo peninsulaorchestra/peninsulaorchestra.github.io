@@ -37,5 +37,14 @@
     </ul>
     {%- endif %}
     {%- if event.tickets %}<p class="event-where">Tickets: {{ event.tickets }}</p>{% endif %}
+    {%- if event.link_url %}
+    <p class="event-where"><a href="{{ event.link_url }}">{{ event.link_text | default: "More information" }}</a></p>
+    {%- endif %}
+    {%- if event.poster %}
+    <a class="event-poster" href="{{ '/images/posters/' | append: event.poster | relative_url }}">
+      <img src="{{ '/images/posters/' | append: event.poster | relative_url }}"
+           alt="{{ event.poster_alt | default: event.title }}" loading="lazy" />
+    </a>
+    {%- endif %}
   </div>
 </div>
