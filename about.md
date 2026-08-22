@@ -6,17 +6,6 @@ description: The Peninsula Orchestra — established 1978, around 50 volunteer m
 banner_title: About Us
 banner_subtitle: A bit about who we are
 
-# The grey facts box further down the page.
-facts:
-  - label: Rehearsals
-    value: Mondays, 7:30–9:30 pm
-  - label: Location
-    value: Holy Trillium United Church, 415 Linwell Rd., St. Catharines
-  - label: Season
-    value: Mid-September through June
-  - label: Membership
-    value: $90 per year for adults. Student, family and financial-needs discounts may apply.
-
 # The call-to-action band at the bottom of the page. Delete to remove it.
 cta:
   title: Come and play
@@ -37,11 +26,11 @@ teachers, electricians, welders and students.
 
 ## Rehearsals & Season
 
-We rehearse every Monday evening from **7:30 pm until 9:30 pm** at the Holy
-Trillium United Church, 415 Linwell Rd., St. Catharines. Our season starts
-mid-September and ends in June.
+We rehearse every Monday evening from **7:30 pm until 9:30 pm** at
+{{ site.rehearsal.venue }}, {{ site.rehearsal.street }}, {{ site.rehearsal.city }}
+{{ site.rehearsal.postal }}. Our season starts mid-September and ends in June.
 
-{% include facts.html items=page.facts %}
+{% include rehearsal-facts.html %}
 
 ## Our Conductor
 
