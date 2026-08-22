@@ -2,21 +2,33 @@
 layout: default
 permalink: /gallery/
 head_title: Photo Gallery — Peninsula Orchestra
-description: Photos of the Peninsula Orchestra in rehearsal and in concert.
+description: Photographs of the Peninsula Orchestra in rehearsal and in concert across the Niagara region.
 banner_title: Photo Gallery
 banner_subtitle: Moments from rehearsals &amp; concerts
 ---
 <section>
   <div class="container">
-    <p class="section-intro">A glimpse of the orchestra in action.</p>
+    <p class="section-intro">A glimpse of the orchestra in action. Select any photograph to see it larger.</p>
     <div class="gallery">
       {%- for photo in site.data.gallery %}
-      {%- if photo.image %}
-      <div class="tile" style="background-image:url('{{ photo.image | relative_url }}')" role="img" aria-label="{{ photo.caption }}"></div>
-      {%- else %}
-      <div class="tile ph">{{ photo.caption }}</div>
-      {%- endif %}
+      <button class="tile" type="button"
+              data-full="{{ '/images/gallery/full/' | append: photo.file | relative_url }}"
+              data-caption="{{ photo.caption }}">
+        <img src="{{ '/images/gallery/thumbs/' | append: photo.file | relative_url }}"
+             alt="{{ photo.caption }}" loading="lazy" width="700" height="467" />
+        <span class="tile-caption">{{ photo.caption }}</span>
+      </button>
       {%- endfor %}
     </div>
   </div>
 </section>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" type="button" aria-label="Close">&times;</button>
+  <button class="lb-prev" type="button" aria-label="Previous photograph">&#8249;</button>
+  <figure class="lb-figure">
+    <img id="lb-img" src="" alt="" />
+    <figcaption id="lb-caption"></figcaption>
+  </figure>
+  <button class="lb-next" type="button" aria-label="Next photograph">&#8250;</button>
+</div>
