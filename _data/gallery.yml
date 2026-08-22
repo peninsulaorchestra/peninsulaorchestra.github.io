@@ -1,0 +1,12 @@
+# Photo gallery tiles.
+#
+# To show a real photo: put the file in images/ and set `image:` to its path,
+# e.g. image: /images/concert.jpg
+# Leave `image:` off and the tile shows the caption as a grey placeholder.
+
+- caption: Concert performance
+- caption: Monday rehearsal
+- caption: The string section
+- caption: Brass & winds
+- caption: Conductor George Cleland
+- caption: Community concert

@@ -1,0 +1,23 @@
+# The orchestra's executive, shown on the Contact page.
+# Use an em dash (—) for a vacant position.
+
+- role: President
+  person: Norm Myshok
+- role: 1st Vice President
+  person: Melissa Buckle
+- role: 2nd Vice President
+  person: —
+- role: Secretary
+  person: Peter Lamb
+- role: Treasurer / Past President
+  person: Simon Yeomans
+- role: Librarian
+  person: Liz Fanjoy
+- role: Music Director
+  person: George Cleland
+- role: Social Media / Publicist
+  person: Mark Healey
+- role: Chamberfest Lead
+  person: Julie Barker
+- role: Members at Large
+  person: Randy Lallouet &amp; Diana Joschko
