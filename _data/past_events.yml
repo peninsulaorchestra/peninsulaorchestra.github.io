@@ -1,0 +1,112 @@
+# PAST concerts, newest first.
+#
+# Migrated from peninsula-orchestra.com, which listed these without years.
+# Entries marked "TODO: confirm year" show the date exactly as the old site
+# gave it; add a `date:` (YYYY-MM-DD) to any of them and it will render as a
+# proper date instead.
+
+- title: 2026 Chamber Fest
+  date: 2026-08-17
+  date_end: 2026-08-21
+  time: Evening rehearsals, 6:30–9:30 pm
+  description: >-
+    Musicians worked on pieces in smaller instrumental groups arranged by our
+    Music Director to suit each group's skill level and mix of instruments —
+    some as small as 2–4 players, others 4–6. Each group was assigned an
+    instructor to help develop its sound and technique, with a larger ensemble
+    formed to play a piece or two together. Players could also attend as a
+    preformed group with their own music.
+
+# TODO: confirm year
+- title: From Classical Forms to Romantic Expression
+  date_text: May 30
+  time: 4:00 p.m., doors at 3:30 pm
+  venue: St Thomas Church
+  address: 99 Ontario St, St Catharines
+  soloist: Eduardo Farias, trumpet
+  description: An afternoon of orchestral masterworks.
+  programme:
+    - Haydn — Trumpet Concerto in E-flat major
+    - Beethoven — Symphony No. 2
+    - Borodin — selections from the Polovtsian Dances
+    - Bach — Sheep May Safely Graze
+
+# TODO: confirm year
+- title: A Night Out At The Movies
+  date_text: February
+  description: >-
+    Proceeds from the concert were shared with the Out of the Cold foundation.
+  programme:
+    - Frozen
+    - What's Up at the Symphony
+    - Molly on the Shore
+    - The Sound of Music
+    - Pink Panther
+    - Ballet Parisian
+    - Star Wars
+
+# TODO: confirm year and venue
+- title: Holiday Concert
+  date_text: Undated
+  description: >-
+    A celebration of the holiday season, collecting non-perishable food in
+    support of Community Care of St Catharines.
+  programme:
+    - Beethoven — Die Weihe des Hauses, Op. 124
+    - Mendelssohn — Piano Concerto No. 1 in G minor, Op. 25
+    - Tchaikovsky — Suite No. 4, Op. 61 "Mozartiana"
+
+# TODO: confirm year
+- title: Spring Concert
+  date_text: Undated
+  venue: Congregation B'Nai Israel
+  soloist: Michael Rosenberger, French horn
+  description: >-
+    Our relationship with the Congregation B'Nai Israel has, over the years,
+    helped us elevate our artistic platform within the Niagara Region. A
+    reception with orchestra members followed the concert.
+  programme:
+    - Leroy Anderson — Serenata
+    - Beethoven — Ouvertüre zu Collins Trauerspiel "Coriolan", Op. 62
+    - C. M. von Weber — Concertino in E minor, Op. 45
+    - "arr. Calvin Custer — Star Trek Through the Years"
+    - Schubert — Symphony No. 8 in B minor, "Unfinished"
+
+# TODO: confirm year
+- title: Spring Concert — in memory of Ivan Samson
+  date_text: May 28
+  time: 4:00 pm
+  venue: Congregation B'nai Israel
+  address: 190 Church St, St Catharines
+  soloist: Grace Snippe, cello
+  tickets: $10.00 each, available at the door
+
+# TODO: confirm year
+- title: Mid-Winter Concert
+  date_text: February 10
+  time: 7:30 pm
+  venue: Covenant Christian Reformed Church
+  address: 278 Parnell Rd, St Catharines
+  description: >-
+    Featuring Mendelssohn's Fingal's Cave. Donations were collected in support
+    of Out of the Cold.
+
+# TODO: confirm year
+- title: Holiday Concert
+  date_text: December 12
+  time: 7:00 pm
+  venue: Trillium United Church
+  address: 415 Linwell Rd., St. Catharines
+  description: >-
+    Our first concert of the season — a varied selection from the classical
+    repertoire, including traditional European carols, and our first concert in
+    our new home. Free admission, with non-perishable food items collected for
+    Community Care St Catharines.
+  programme:
+    - Martini/Blane arr. Whitney — Have Yourself a Merry Little Christmas
+    - Washington/Harline arr. Isaac — When You Wish Upon a Star
+    - Williams arr. Smith — Star Wars Theme
+    - Kent — I'll Be Home For Christmas
+    - Beethoven — Symphony No. 1 in C major, 2nd movement
+    - arr. Surell — Christmas Carol Medley
+    - Anderson — Sleigh Ride

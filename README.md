@@ -11,7 +11,9 @@ the pencil icon, edit, and commit — the live site updates in about a minute.
 
 | To change… | Edit this file |
 | --- | --- |
-| Concert listings | `_data/events.yml` |
+| Upcoming concerts | `_data/events.yml` |
+| Past concerts | `_data/past_events.yml` |
+| Guest artist biographies | `_data/artists.yml` |
 | News announcements | `_data/news.yml` |
 | Links on the Events page | `_data/links.yml` |
 | The executive roster | `_data/executive.yml` |
@@ -33,6 +35,13 @@ Open `_data/events.yml` and add an entry:
 The month, day and year on the left of the listing fill in automatically. If
 the date isn't settled yet, leave `date:` off and use `year: 2026` instead —
 it shows as "Date TBA".
+
+Optional fields: `time`, `venue`, `address`, `soloist`, `tickets`, `description`,
+`programme` (a list of works), and `date_end` for multi-day events.
+
+When a concert has happened, move its entry from `_data/events.yml` to
+`_data/past_events.yml`. If the "Upcoming Concerts" list is empty the page shows
+a short "nothing announced yet" message instead of an empty gap.
 
 ### Adding a photo
 
