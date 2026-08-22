@@ -1,4 +1,14 @@
 <!DOCTYPE html>
+{%- comment -%}
+  Assets are versioned by the build revision. GitHub Pages caches HTML for ten
+  minutes, so without this a visitor can end up with new HTML and a stale
+  stylesheet, which renders as an unstyled page.
+{%- endcomment -%}
+{%- if site.github.build_revision -%}
+  {%- assign asset_v = site.github.build_revision | slice: 0, 8 -%}
+{%- else -%}
+  {%- assign asset_v = site.time | date: "%s" -%}
+{%- endif -%}
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -11,7 +21,7 @@
   <link rel="icon" href="{{ '/images/favicon.ico' | relative_url }}" sizes="any" />
   <link rel="icon" type="image/png" href="{{ '/images/favicon-32.png' | relative_url }}" sizes="32x32" />
   <link rel="apple-touch-icon" href="{{ '/images/apple-touch-icon.png' | relative_url }}" />
-  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}" />
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}?v={{ asset_v }}" />
 </head>
 <body>
 
@@ -49,6 +59,6 @@
   </footer>
 
   {%- include tawk.html %}
-  <script src="{{ '/js/main.js' | relative_url }}" data-contact-email="{{ site.contact_email }}"></script>
+  <script src="{{ '/js/main.js' | relative_url }}?v={{ asset_v }}" data-contact-email="{{ site.contact_email }}"></script>
 </body>
 </html>
