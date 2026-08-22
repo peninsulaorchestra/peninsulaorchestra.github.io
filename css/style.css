@@ -376,3 +376,38 @@ section { padding: 88px 0; }
   letter-spacing: 0.02em;
   word-break: break-word;
 }
+
+/* ---------- Cookie notice ---------- */
+.cookie-notice {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 90;
+  max-width: 380px;
+  background: var(--black);
+  color: #e8e8e8;
+  padding: 22px 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+.cookie-notice[hidden] { display: none; }
+.cookie-notice p {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+.cookie-notice-actions { display: flex; gap: 10px; }
+.cookie-notice .btn {
+  font-size: 0.75rem;
+  padding: 10px 18px;
+  background: #fff;
+  color: var(--black);
+  border: 1px solid #fff;
+}
+.cookie-notice .btn:hover { background: transparent; color: #fff; }
+.cookie-notice .btn.ghost { background: transparent; color: #e8e8e8; border-color: #5a5a5a; }
+.cookie-notice .btn.ghost:hover { border-color: #fff; color: #fff; }
+
+@media (max-width: 600px) {
+  .cookie-notice { left: 12px; right: 12px; bottom: 12px; max-width: none; }
+}
