@@ -6,8 +6,9 @@ nothing to install.
 
 ## Editing the site
 
-Most changes don't require touching HTML. Open the file on github.com, click
-the pencil icon, edit, and commit — the live site updates in about a minute.
+Most changes don't require touching HTML, git, or anything installed. Every
+change goes through a pull request, so a mistake is caught before it reaches
+the live site.
 
 | To change… | Edit this file |
 | --- | --- |
@@ -52,29 +53,37 @@ Put the image in `images/`, then point a gallery entry at it:
   image: /images/concert.jpg
 ```
 
-## If you make a mistake
+## Making a change
 
-The content files are YAML, which is picky about punctuation and indentation.
-If something is off, **the live site does not break** — it keeps serving the
-last good version.
+1. Open the file on github.com and click the **pencil icon**.
+2. Make your edit.
+3. Click **Commit changes**. In the box that appears choose
+   **"Create a new branch for this commit and start a pull request"**, then
+   **Propose changes** and **Create pull request**.
+4. Wait about a minute. A check runs against your change and reports back on
+   the pull request:
+   - **Green tick** — click **Merge pull request**. The site updates about a
+     minute later.
+   - **Red X** — click **Details** to see which file and line is wrong. Fix it
+     with the pencil icon on the same pull request and the check runs again.
+5. After merging, click **Delete branch**. Nothing is lost.
 
-Every change is automatically checked. Within about a minute of committing,
-GitHub shows either a green tick or a red X next to your commit:
+Nothing you do in a pull request affects the live site until it is merged, so
+there is no way to break the site for visitors. If you get in a mess, close the
+pull request and start again.
 
-- **Green tick** — your change is live.
-- **Red X** — something is wrong and the site has *not* updated. Click the X,
-  then "Details", and the message names the file and line number.
+## When the check fails
 
-The usual culprits:
+The content files are YAML, which is fussy about punctuation and indentation.
+The three things that go wrong:
 
-| Symptom | Fix |
+| Message | Cause |
 | --- | --- |
-| `mapping values are not allowed here` | A missing space after a colon — write `title: Concert`, not `title:Concert` |
-| `could not find expected ':'` | Indentation is inconsistent; every field under an entry needs the same number of spaces |
-| A value containing `:` or `#` | Wrap it in quotes: `title: "Star Wars: A New Hope"` |
+| `mapping values are not allowed here` | Missing space after a colon — write `title: Concert`, not `title:Concert` |
+| `could not find expected ':'` | Indentation is inconsistent; every field in an entry needs the same indent |
+| Something about a special character | A value containing `:` or `#` needs quotes: `title: "Star Wars: A New Hope"` |
 
-If you get stuck, the safest fix is to revert: open the commit, click the "..."
-menu and choose Revert. That puts things back and you can try again.
+The check names the file and the line number, so start there.
 
 ## How it fits together
 
