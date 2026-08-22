@@ -370,3 +370,8 @@ section { padding: 88px 0; }
   height: auto;
   margin: 6px 0 26px;
 }
+.event-poster { display: block; margin-top: 16px; }
+.event-poster img {
+  width: 100%; max-width: 320px; height: auto;
+  border: 1px solid var(--line);
+}
