@@ -21,6 +21,7 @@ the live site.
 | Photo gallery tiles | `_data/gallery.yml` |
 | The About page text | `about.md` |
 | Menu, contact email, footer year | `_config.yml` |
+| Turning the chat widget on or off | `_config.yml` (`tawk:`) |
 | Colours, fonts, spacing | `css/style.css` |
 
 ### Adding a concert
