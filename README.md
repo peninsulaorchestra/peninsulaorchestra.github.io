@@ -54,13 +54,18 @@ Put the image in `images/`, then point a gallery entry at it:
 
 ## Working locally (optional)
 
-You don't need this to make content edits, but if you want to preview before
-publishing you'll need Ruby 3.0 or newer:
+You don't need this to make content edits — the table above covers those
+through github.com. But if you want to preview before publishing:
 
 ```sh
-gem install jekyll bundler
-jekyll serve      # then open http://localhost:4000
+brew install ruby@3.3
+export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
+bundle install
+bundle exec jekyll serve      # http://localhost:4000, reloads as you edit
 ```
 
-Note that macOS ships with Ruby 2.6, which is too old — install a current Ruby
-via Homebrew (`brew install ruby`) or rbenv first.
+Ruby **3.3** specifically: the `Gemfile` pins the `github-pages` gem, which is
+what GitHub runs server-side, and one of its dependencies caps Ruby below 4.0.
+Pinning it this way means what you see locally is what gets published.
+
+macOS ships Ruby 2.6, which is too old — hence the Homebrew install.
