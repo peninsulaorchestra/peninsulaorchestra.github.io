@@ -16,6 +16,17 @@ contact_email: info@peninsula-orchestra.com
 # Shown in the footer of every page.
 copyright_year: 2018
 
+# Rehearsal venue and terms. Defined once here and rendered on the About and
+# Contact pages, so there is a single place to change it.
+rehearsal:
+  venue: Holy Trillium United Church
+  street: 415 Linwell Rd.
+  city: St. Catharines, ON
+  postal: L2M 2P3
+  when: Mondays, 7:30–9:30 pm
+  season: Mid-September through June
+  membership: $90 per year for adults. Student, family and financial-needs discounts may apply.
+
 # The menu across the top of every page. Reorder or rename here.
 nav:
   - title: Home

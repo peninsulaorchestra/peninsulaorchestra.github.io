@@ -5,12 +5,6 @@ head_title: Contact Us — Peninsula Orchestra
 description: Get in touch with the Peninsula Orchestra about joining, concerts, or anything else.
 banner_title: Contact Us
 banner_subtitle: Drop us a line
-
-facts:
-  - label: Rehearsals
-    value: Holy Trillium United Church<br />415 Linwell Rd., St. Catharines, ON
-  - label: When
-    value: Mondays, 7:30–9:30 pm (Sep–Jun)
 ---
 <section>
   <div class="container grid cols-2 items-start">
@@ -42,9 +36,8 @@ facts:
       <hr class="divider left" />
       <ul class="facts">
         <li><span class="label">Email</span><span><a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a></span></li>
-        {%- for fact in page.facts %}
-        <li><span class="label">{{ fact.label }}</span><span>{{ fact.value }}</span></li>
-        {%- endfor %}
+        <li><span class="label">Rehearsals</span><span>{{ site.rehearsal.venue }}<br />{{ site.rehearsal.street }}, {{ site.rehearsal.city }} {{ site.rehearsal.postal }}</span></li>
+        <li><span class="label">When</span><span>{{ site.rehearsal.when }} (Sep–Jun)</span></li>
       </ul>
     </div>
   </div>
