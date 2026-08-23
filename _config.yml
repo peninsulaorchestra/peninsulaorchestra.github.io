@@ -33,8 +33,17 @@ tawk:
   property_id: "6a89f47943fd99344af421a3"
   widget_id: "1k0le5uc0"
 
-# Shown in the footer of every page.
-copyright_year: 2018
+# Where else the orchestra exists online. Used for the Facebook link on the
+# Events page, and to tell search engines that this site and that page are the
+# same organisation.
+facebook: https://www.facebook.com/p/Peninsula-Orchestra-100064857121631/
+
+# Used in the structured data that search engines and AI assistants read.
+founded: "1978"
+logo: /images/logo.png
+share_image: /images/hero.jpg
+
+# The footer year comes from the build date, so it can never go stale.
 
 # Rehearsal venue and terms. Defined once here and rendered on the About and
 # Contact pages, so there is a single place to change it.
