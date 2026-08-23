@@ -2,7 +2,7 @@
 layout: page
 permalink: /about/
 head_title: About Us — Peninsula Orchestra
-description: The Peninsula Orchestra — established 1978, around 50 volunteer musicians drawn from across Ontario's Niagara Peninsula. No auditions, no age restrictions.
+description: The Peninsula Orchestra — established 1978, around 57 volunteer musicians drawn from across Ontario's Niagara Peninsula. No auditions, no age restrictions.
 banner_title: About Us
 banner_subtitle: A bit about who we are
 
@@ -26,7 +26,7 @@ In 1993 the name of the group was officially changed to the present
 
 We draw our membership from different communities within Ontario, Canada's
 Niagara Peninsula. We are all non-paid volunteers who want to keep up with our
-instruments for the love of it. The orchestra has approximately **50 members** —
+instruments for the love of it. The orchestra has approximately **57 members** —
 people young and old, from all walks of life, including doctors, lawyers,
 teachers, electricians, welders and students. Some of us are still working or
 about to work and others are retired, but we are all serious amateurs wanting to
