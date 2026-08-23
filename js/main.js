@@ -14,15 +14,42 @@
     });
   }
 
-  // Contact form: no backend on GitHub Pages, so hand off to a mailto: link.
+  // Contact form: GitHub Pages has no backend, so the form posts to Web3Forms,
+  // which emails the message on to the orchestra. Submitting over fetch keeps
+  // the visitor on the page; without JavaScript the plain form POST still works.
   var form = document.querySelector('#contact-form');
-  if (form && contactEmail) {
+  var formStatus = document.querySelector('#form-status');
+  if (form && formStatus) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var body = 'From: ' + form.name.value + ' (' + form.email.value + ')\n\n' + form.message.value;
-      window.location.href = 'mailto:' + contactEmail +
-        '?subject=' + encodeURIComponent('Website enquiry from ' + form.name.value) +
-        '&body=' + encodeURIComponent(body);
+      var button = form.querySelector('button[type="submit"]');
+      var data = {};
+      new FormData(form).forEach(function (value, key) { data[key] = value; });
+
+      button.disabled = true;
+      formStatus.hidden = false;
+      formStatus.className = 'form-status';
+      formStatus.textContent = 'Sending…';
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (response) {
+        return response.json().then(function (json) {
+          if (!response.ok) { throw new Error(json.message || 'Send failed'); }
+          form.reset();
+          formStatus.className = 'form-status success';
+          formStatus.textContent = 'Thank you — your message is on its way. We will be in touch soon.';
+        });
+      }).catch(function () {
+        formStatus.className = 'form-status error';
+        formStatus.textContent = contactEmail
+          ? 'Sorry, that did not send. Please email us at ' + contactEmail + ' instead.'
+          : 'Sorry, that did not send. Please try again in a moment.';
+      }).then(function () {
+        button.disabled = false;
+      });
     });
   }
 

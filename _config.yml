@@ -13,6 +13,14 @@ url: https://peninsulaorchestra.ca
 # Used on the contact page, the events page, and by the contact form.
 contact_email: info@peninsula-orchestra.com
 
+# Contact form (Web3Forms). The form on the Contact page posts to Web3Forms,
+# which emails each submission to the address the key was created with. To send
+# them somewhere else, create a new key at web3forms.com and paste it in here.
+#
+# This is a public identifier, not a secret — it is visible in the page source
+# of any site using Web3Forms, so it is fine for it to live here.
+web3forms_key: "b5798ef0-573e-4b11-b6ff-4441616637a2"
+
 # Live chat widget (tawk.to). Fill both IDs in and the chat bubble appears on
 # every page. Blank either one and it disappears again — nothing else to change.
 #
