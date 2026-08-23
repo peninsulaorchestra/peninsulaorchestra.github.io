@@ -10,8 +10,10 @@ description: >-
   Niagara region, enjoying a variety of music and sharing it through community concerts.
 url: https://peninsulaorchestra.ca
 
-# Used on the contact page, the events page, and by the contact form.
-contact_email: info@peninsula-orchestra.com
+# Used on the contact page, the events page, and by the contact form. Forwarded
+# by Porkbun to the committee's own inboxes — change the recipients there, not
+# here.
+contact_email: info@peninsulaorchestra.ca
 
 # Contact form (Web3Forms). The form on the Contact page posts to Web3Forms,
 # which emails each submission to the address the key was created with. To send
