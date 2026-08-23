@@ -7,6 +7,11 @@ head_title: Peninsula Orchestra — Community Concerts in Niagara
   <div class="container">
     <h1>Welcome to the {{ site.title }}</h1>
     <p>{{ site.tagline }}</p>
-    <a class="btn outline" href="{{ '/events/' | relative_url }}">Upcoming Concerts and News</a>
+    <div class="hero-actions">
+      {%- if site.registration_url and site.registration_url != "" %}
+      <a class="btn filled" href="{{ '/join/' | relative_url }}">{{ site.registration_text }}</a>
+      {%- endif %}
+      <a class="btn outline" href="{{ '/events/' | relative_url }}">Upcoming Concerts and News</a>
+    </div>
   </div>
 </section>
