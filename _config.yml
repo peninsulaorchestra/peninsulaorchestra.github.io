@@ -41,6 +41,13 @@ registration_text: Register for 2026–27
 registration_note: >-
   We are especially looking for violins, viola, bassoon and lower brass —
   trombone, baritone and tuba.
+# Optional poster shown at the top of the Join page. Put the image in images/
+# and give the path here, with a description of it for screen readers.
+registration_poster: /images/posters/registration-2026-27.jpg
+registration_poster_alt: >-
+  Peninsula Orchestra poster — registration for the 2026-2027 season is now
+  open. Line drawings of the orchestra standing together, a trombone and a
+  violin, on a pink background with the orchestra's monogram behind.
 
 # Used in the structured data that search engines and AI assistants read.
 founded: "1978"
@@ -64,6 +71,8 @@ rehearsal:
 nav:
   - title: Home
     url: /
+  - title: Register
+    url: /join/
   - title: About Us
     url: /about/
   - title: Photo Gallery

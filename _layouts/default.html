@@ -59,6 +59,10 @@
 
   {%- if page.banner_title %}
   <section class="page-banner">
+    {%- if page.corner_flowers %}
+    <img class="corner-flower corner-flower--left" src="{{ '/images/flowers-corner.png' | relative_url }}" alt="" aria-hidden="true" />
+    <img class="corner-flower corner-flower--right" src="{{ '/images/flowers-corner.png' | relative_url }}" alt="" aria-hidden="true" />
+    {%- endif %}
     <h1>{{ page.banner_title }}</h1>
     <p>{{ page.banner_subtitle }}</p>
   </section>

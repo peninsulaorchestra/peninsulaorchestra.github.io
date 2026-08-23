@@ -16,6 +16,7 @@
   --serif: "Playfair Display", Georgia, "Times New Roman", serif;
   --sans: "Open Sans", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   --maxw: 1100px;
+  --poster-pink: #eab2bb;
   --hero: linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.22)), url("../images/hero.jpg");
 }
 
@@ -141,12 +142,32 @@ nav.main-nav a.active { color: #fff; border-bottom-color: #fff; }
 .hero-actions {
   display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
 }
-/* The specific ask under the call to action — which instruments we need. */
-.hero-note {
-  margin: 26px auto 0; max-width: 560px;
-  font-size: 0.95rem; font-weight: 300; color: #fff; opacity: 0.9;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+/* Watercolour flowers lifted from the registration poster, framing the page
+   heading. Decorative only — they carry empty alt text and ignore the pointer. */
+.corner-flower {
+  position: absolute; top: 0; z-index: 0; pointer-events: none;
+  width: clamp(120px, 17vw, 230px); height: auto;
 }
+.corner-flower--left { left: 0; }
+.corner-flower--right { right: 0; transform: scaleX(-1); }
+@media (max-width: 560px) {
+  .corner-flower { opacity: 0.85; }
+}
+
+/* Recruitment poster at the top of the Join page. The band behind it is the
+   poster's own background colour, so its edges dissolve into the page instead
+   of sitting on white as a pink rectangle. The selector has to out-rank
+   `.prose img`, which sets its own margins. */
+.join-poster-band {
+  background: var(--poster-pink);
+  padding: 30px 24px;
+  margin: 0 0 44px;
+}
+.prose img.join-poster {
+  display: block; width: 100%; max-width: 520px; height: auto;
+  margin: 0 auto; border: 0;
+}
+
 
 /* ---------- Sections ---------- */
 section { padding: 88px 0; }
@@ -161,8 +182,12 @@ section { padding: 88px 0; }
 .page-banner {
   background: #fff;
   color: var(--ink); text-align: center; padding: 72px 24px 8px;
+  /* Containing block for the decorative corner flowers. Without this they
+     would resolve against the document instead of the banner. */
+  position: relative; overflow: hidden;
 }
 .page-banner h1 {
+  position: relative; z-index: 1;
   color: #ad8c8c; font-weight: 400;
   font-size: clamp(2.4rem, 5vw, 3.2rem); margin: 0;
 }
@@ -170,6 +195,7 @@ section { padding: 88px 0; }
   content: ""; display: block; width: 70px; height: 1px;
   background: #ad8c8c; opacity: 0.6; margin: 22px auto 0;
 }
+.page-banner p { position: relative; z-index: 1; }
 .page-banner p {
   color: var(--gray); margin: 18px 0 0; letter-spacing: 0.14em;
   text-transform: uppercase; font-size: 0.78rem; font-weight: 600;
