@@ -21,22 +21,15 @@ contact_email: info@peninsula-orchestra.com
 # of any site using Web3Forms, so it is fine for it to live here.
 web3forms_key: "b5798ef0-573e-4b11-b6ff-4441616637a2"
 
-# Live chat widget (tawk.to). Fill both IDs in and the chat bubble appears on
-# every page. Blank either one and it disappears again — nothing else to change.
-#
-# Find them in tawk.to under Administration → Chat Widget. The widget code it
-# shows you ends with:  embed.tawk.to/PROPERTY_ID/WIDGET_ID
-#
-# These are public identifiers, not secrets — they are visible in the page
-# source of any site running tawk.to, so it is fine for them to live here.
-tawk:
-  property_id: "6a89f47943fd99344af421a3"
-  widget_id: "1k0le5uc0"
-
 # Where else the orchestra exists online. Used for the Facebook link on the
 # Events page, and to tell search engines that this site and that page are the
 # same organisation.
 facebook: https://www.facebook.com/p/Peninsula-Orchestra-100064857121631/
+
+# The "message us" button in the corner of every page. It opens a Messenger
+# conversation with the Facebook page above, so replies arrive in the page inbox
+# on your phone. Blank this line and the button disappears.
+messenger: https://m.me/100064857121631
 
 # Used in the structured data that search engines and AI assistants read.
 founded: "1978"

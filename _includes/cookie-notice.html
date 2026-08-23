@@ -1,20 +1,11 @@
-{%- assign chat_on = false -%}
-{%- if site.tawk.property_id != "" and site.tawk.widget_id != "" -%}
-  {%- assign chat_on = true -%}
-{%- endif -%}
-{%- assign captcha_on = false -%}
-{%- if site.web3forms_key != "" -%}
-  {%- assign captcha_on = true -%}
-{%- endif -%}
-{%- if chat_on or captcha_on %}
-<!-- Cookie notice. The third-party scripts it covers — currently the chat widget
-     and the contact form's spam check — are loaded only once someone accepts, so
-     declining means no third-party script and no cookies are set at all. The
-     wording is deliberately generic: it does not need editing when the list
-     changes, and the notice hides itself when there is nothing to consent to. -->
+{%- if site.web3forms_key != "" %}
+<!-- Cookie notice. The third-party script it covers — the contact form's spam
+     check — is loaded only once someone accepts, so declining means no
+     third-party script and no cookies are set at all. The wording is
+     deliberately generic: it does not need editing when the list changes, and
+     the notice hides itself when there is nothing to consent to. -->
 <div class="cookie-notice" id="cookie-notice" hidden
-     data-tawk-src="{% if chat_on %}https://embed.tawk.to/{{ site.tawk.property_id }}/{{ site.tawk.widget_id }}{% endif %}"
-     data-captcha-src="{% if captcha_on %}https://web3forms.com/client/script.js{% endif %}">
+     data-captcha-src="https://web3forms.com/client/script.js">
   <p>We use cookies for a few features on this site. Nothing loads unless you accept.</p>
   <div class="cookie-notice-actions">
     <button type="button" class="btn" data-cookie-accept>Accept</button>

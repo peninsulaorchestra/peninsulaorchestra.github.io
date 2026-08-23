@@ -1,0 +1,15 @@
+{%- if site.messenger and site.messenger != "" %}
+<!-- Opens a Messenger conversation with the orchestra's Facebook page. It is an
+     ordinary link, so it loads no third-party script and sets no cookies —
+     unlike an embedded chat widget, which is why there is nothing to consent to
+     here. Meta shut down its embeddable chat plugin in May 2024; m.me links are
+     what remains. -->
+<a class="messenger-button" href="{{ site.messenger }}" target="_blank" rel="noopener"
+   title="Message us on Facebook">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <path d="M20.4 11.6a8 8 0 0 1-8.6 8 9 9 0 0 1-2.7-.4L4 21l1.5-4.4a7.8 7.8 0 0 1-1.9-5 8 8 0 0 1 8.6-8 8 8 0 0 1 8.2 8z" />
+  </svg>
+  <span class="visually-hidden">Message us on Facebook</span>
+</a>
+{%- endif %}

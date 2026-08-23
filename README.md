@@ -21,7 +21,7 @@ the live site.
 | Photo gallery tiles | `_data/gallery.yml` |
 | The About page text | `about.md` |
 | Menu, contact email, Facebook link | `_config.yml` |
-| Turning the chat widget on or off | `_config.yml` (`tawk:`) |
+| The "message us" button | `_config.yml` (`messenger:`) |
 | The cookie notice wording | `_includes/cookie-notice.html` |
 | Where contact form messages are sent | `_config.yml` (`web3forms_key`) |
 | Colours, fonts, spacing | `css/style.css` |
