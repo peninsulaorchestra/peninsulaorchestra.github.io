@@ -7,24 +7,15 @@
   {%- assign captcha_on = true -%}
 {%- endif -%}
 {%- if chat_on or captcha_on %}
-<!-- Cookie notice. Both third-party pieces — the chat widget and the spam check
-     on the contact form — are loaded only once someone accepts, so declining
-     means no third-party script and no cookies are set at all. -->
+<!-- Cookie notice. The third-party scripts it covers — currently the chat widget
+     and the contact form's spam check — are loaded only once someone accepts, so
+     declining means no third-party script and no cookies are set at all. The
+     wording is deliberately generic: it does not need editing when the list
+     changes, and the notice hides itself when there is nothing to consent to. -->
 <div class="cookie-notice" id="cookie-notice" hidden
      data-tawk-src="{% if chat_on %}https://embed.tawk.to/{{ site.tawk.property_id }}/{{ site.tawk.widget_id }}{% endif %}"
      data-captcha-src="{% if captcha_on %}https://web3forms.com/client/script.js{% endif %}">
-  <p>
-    {%- if chat_on and captcha_on %}
-    This site uses two outside services: a live chat window, and a spam check on
-    our contact form. Both set cookies in your browser.
-    {%- elsif chat_on %}
-    We use a live chat service so you can message us from the site. It sets
-    cookies in your browser.
-    {%- else %}
-    Our contact form uses an outside spam check. It sets cookies in your browser.
-    {%- endif %}
-    Nothing loads unless you say yes.
-  </p>
+  <p>We use cookies for a few features on this site. Nothing loads unless you accept.</p>
   <div class="cookie-notice-actions">
     <button type="button" class="btn" data-cookie-accept>Accept</button>
     <button type="button" class="btn ghost" data-cookie-decline>No thanks</button>
