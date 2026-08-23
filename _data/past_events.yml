@@ -54,14 +54,26 @@
 
 # TODO: confirm venue
 - title: Holiday Concert
-  date_text: December 2025
+  date: 2025-12-15
   description: >-
-    A celebration of the holiday season, collecting non-perishable food in
-    support of Community Care of St Catharines.
+    A celebration of the holiday season, and our best-attended concert yet with
+    145 guests. Two barrels of non-perishable food were collected in support of
+    Community Care of St Catharines.
   programme:
     - Beethoven — Die Weihe des Hauses, Op. 124
     - Mendelssohn — Piano Concerto No. 1 in G minor, Op. 25
     - Tchaikovsky — Suite No. 4, Op. 61 "Mozartiana"
+
+- title: 2025 Chamber Fest
+  date: 2025-08-18
+  date_end: 2025-08-22
+  time: Evening rehearsals, 6:30–9:30 pm
+  venue: Wesley United Church
+  address: 244 First Ave N, Welland, ON L3C 1Y8
+  description: >-
+    Sixteen players, two of them from outside the orchestra, worked in four
+    coached ensembles across the week. Coaching was led by George Cleland,
+    Gordon Cleland, Daniela Cruz and Michael Rosenberger.
 
 - title: Spring Concert
   date_text: Spring 2025
