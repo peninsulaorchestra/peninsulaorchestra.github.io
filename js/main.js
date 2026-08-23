@@ -14,15 +14,53 @@
     });
   }
 
-  // Contact form: no backend on GitHub Pages, so hand off to a mailto: link.
+  // Contact form: GitHub Pages has no backend, so the form posts to Web3Forms,
+  // which emails the message on to the orchestra. Submitting over fetch keeps
+  // the visitor on the page; without JavaScript the plain form POST still works.
   var form = document.querySelector('#contact-form');
-  if (form && contactEmail) {
+  var formStatus = document.querySelector('#form-status');
+  if (form && formStatus) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var body = 'From: ' + form.name.value + ' (' + form.email.value + ')\n\n' + form.message.value;
-      window.location.href = 'mailto:' + contactEmail +
-        '?subject=' + encodeURIComponent('Website enquiry from ' + form.name.value) +
-        '&body=' + encodeURIComponent(body);
+      var button = form.querySelector('button[type="submit"]');
+      var data = {};
+      new FormData(form).forEach(function (value, key) { data[key] = value; });
+
+      button.disabled = true;
+      formStatus.hidden = false;
+      formStatus.className = 'form-status';
+      formStatus.textContent = 'Sending…';
+
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (response) {
+        return response.json().then(function (json) {
+          if (!response.ok) {
+            // Web3Forms explains the refusal — an unticked spam check, most
+            // often — so show that rather than a generic failure.
+            var refusal = new Error(json.message || 'Send failed');
+            refusal.fromApi = true;
+            throw refusal;
+          }
+          form.reset();
+          if (window.hcaptcha) { window.hcaptcha.reset(); }
+          formStatus.className = 'form-status success';
+          formStatus.textContent = 'Thank you — your message is on its way. We will be in touch soon.';
+        });
+      }).catch(function (error) {
+        formStatus.className = 'form-status error';
+        if (error && error.fromApi) {
+          formStatus.textContent = error.message;
+        } else {
+          formStatus.textContent = contactEmail
+            ? 'Sorry, that did not send. Please email us at ' + contactEmail + ' instead.'
+            : 'Sorry, that did not send. Please try again in a moment.';
+        }
+      }).then(function () {
+        button.disabled = false;
+      });
     });
   }
 
@@ -130,11 +168,13 @@
     show(0);
   }
 
-  // Cookie notice. The chat widget is third-party and sets cookies, so it is
-  // not loaded until someone accepts. Declining loads nothing at all.
+  // Cookie notice. Both third-party pieces set cookies — the chat widget and
+  // the spam check on the contact form — so neither is loaded until someone
+  // accepts. Declining loads nothing at all.
   var notice = document.querySelector('#cookie-notice');
   if (notice) {
     var KEY = 'po-cookie-consent';
+    var gate = document.querySelector('#captcha-gate');
 
     function loadChat() {
       var src = notice.getAttribute('data-tawk-src');
@@ -149,6 +189,27 @@
       s0.parentNode.insertBefore(s1, s0);
     }
 
+    var captchaRequested = false;
+    function loadCaptcha() {
+      var src = notice.getAttribute('data-captcha-src');
+      if (!src || captchaRequested || !document.querySelector('.h-captcha')) return;
+      captchaRequested = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.defer = true;
+      s.src = src;
+      document.body.appendChild(s);
+    }
+
+    // The form cannot be submitted without the spam check, so it stays disabled
+    // until someone accepts. The gate explains why and offers the way back.
+    function setFormGate(accepted) {
+      if (!form || !gate) return;
+      var button = form.querySelector('button[type="submit"]');
+      gate.hidden = accepted;
+      if (button) { button.disabled = !accepted; }
+    }
+
     function remember(value) {
       try { localStorage.setItem(KEY, value); } catch (e) { /* private mode */ }
     }
@@ -158,18 +219,30 @@
 
     if (choice === 'accepted') {
       loadChat();
-    } else if (choice !== 'declined') {
-      notice.hidden = false;
+      loadCaptcha();
+      setFormGate(true);
+    } else {
+      setFormGate(false);
+      if (choice !== 'declined') { notice.hidden = false; }
     }
 
     notice.querySelector('[data-cookie-accept]').addEventListener('click', function () {
       remember('accepted');
       notice.hidden = true;
       loadChat();
+      loadCaptcha();
+      setFormGate(true);
     });
     notice.querySelector('[data-cookie-decline]').addEventListener('click', function () {
       remember('declined');
       notice.hidden = true;
+      setFormGate(false);
     });
+
+    // Someone who declined earlier can still change their mind from the form.
+    var reopen = document.querySelector('[data-cookie-reopen]');
+    if (reopen) {
+      reopen.addEventListener('click', function () { notice.hidden = false; });
+    }
   }
 })();
