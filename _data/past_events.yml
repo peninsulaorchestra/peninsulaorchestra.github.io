@@ -39,29 +39,49 @@
     - Borodin — selections from the Polovtsian Dances
     - Bach — Sheep May Safely Graze
 
-- title: A Night Out At The Movies
-  date_text: February 2026
+- title: Maritime Concert
+  date: 2026-02-27
+  venue: Jubilee Fellowship
   description: >-
-    Proceeds from the concert were shared with the Out of the Cold foundation.
+    Proceeds from the concert were shared with the Out of the Cold foundation in
+    St Catharines. Donations were up on previous years, letting the orchestra
+    pass on $900.
   programme:
-    - Frozen
-    - What's Up at the Symphony
-    - Molly on the Shore
-    - The Sound of Music
-    - Pink Panther
-    - Ballet Parisian
-    - Star Wars
+    - Glière — Russian Sailors' Dance (arr. Belisario Errante)
+    - Vaughan Williams — Sea Songs Quick March
+    - Handel — Suite for Orchestra, Water Music (arr. Hamilton Harty)
+    - Horner — Titanic (arr. John Moss)
+    - Robert Maxwell — Ebb Tide
+    - Intermission
+    - Sullivan — H.M.S. Pinafore Overture
+    - Sullivan — The Pirates of Penzance
+    - Badelt — Pirates of the Caribbean (arr. Ted Ricketts)
+    - Richard Rodgers — Victory at Sea
+    - John Williams — Highlights from Jurassic Park (arr. Calvin Custer)
 
-# TODO: confirm venue
 - title: Holiday Concert
-  date_text: December 2025
+  date: 2025-12-15
+  venue: Trillium United Church
+  address: 415 Linwell Rd., St. Catharines
   description: >-
-    A celebration of the holiday season, collecting non-perishable food in
-    support of Community Care of St Catharines.
+    A celebration of the holiday season, and our best-attended concert yet with
+    145 guests. Two barrels of non-perishable food were collected in support of
+    Community Care of St Catharines.
   programme:
     - Beethoven — Die Weihe des Hauses, Op. 124
     - Mendelssohn — Piano Concerto No. 1 in G minor, Op. 25
     - Tchaikovsky — Suite No. 4, Op. 61 "Mozartiana"
+
+- title: 2025 Chamber Fest
+  date: 2025-08-18
+  date_end: 2025-08-22
+  time: Evening rehearsals, 6:30–9:30 pm
+  venue: Wesley United Church
+  address: 244 First Ave N, Welland, ON L3C 1Y8
+  description: >-
+    Sixteen players, two of them from outside the orchestra, worked in four
+    coached ensembles across the week. Coaching was led by George Cleland,
+    Gordon Cleland, Daniela Cruz and Michael Rosenberger.
 
 - title: Spring Concert
   date_text: Spring 2025
