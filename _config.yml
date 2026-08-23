@@ -33,6 +33,15 @@ facebook: https://www.facebook.com/p/Peninsula-Orchestra-100064857121631/
 # on your phone. Blank this line and the button disappears.
 messenger: https://m.me/100064857121631
 
+# Season registration form. When this is filled in, a "Register" button appears
+# on the front page. Blank the line when registration closes and the button
+# disappears — nothing else to change.
+registration_url: https://docs.google.com/forms/d/e/1FAIpQLSd9R68ahf2Kzv1tuT4a3_lUzEFzAOsxYpUSDe1-WDnmWI4xKg/viewform
+registration_text: Register for 2026–27
+registration_note: >-
+  We are especially looking for violins, viola, bassoon and lower brass —
+  trombone, baritone and tuba.
+
 # Used in the structured data that search engines and AI assistants read.
 founded: "1978"
 logo: /images/logo.png

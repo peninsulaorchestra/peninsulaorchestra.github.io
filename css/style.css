@@ -133,6 +133,20 @@ nav.main-nav a.active { color: #fff; border-bottom-color: #fff; }
 .btn:hover { background: transparent; color: var(--black); }
 .btn.outline { background: transparent; color: #fff; border: 1px solid #fff; }
 .btn.outline:hover { background: #fff; color: var(--black); }
+/* Solid white, for the strongest call to action over the hero photograph. */
+.btn.filled { background: #fff; color: var(--black); border: 1px solid #fff; }
+.btn.filled:hover { background: transparent; color: #fff; }
+
+/* Side by side on wide screens, stacked on narrow ones. */
+.hero-actions {
+  display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+}
+/* The specific ask under the call to action — which instruments we need. */
+.hero-note {
+  margin: 26px auto 0; max-width: 560px;
+  font-size: 0.95rem; font-weight: 300; color: #fff; opacity: 0.9;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
 
 /* ---------- Sections ---------- */
 section { padding: 88px 0; }
