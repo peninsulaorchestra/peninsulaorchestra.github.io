@@ -379,6 +379,16 @@ section { padding: 88px 0; }
 .form-status.success { border-left-color: var(--black); }
 .form-status.error { border-left-color: #8c1c1c; color: #8c1c1c; }
 
+/* The captcha renders into this div once cookies are accepted; until then it is
+   empty and should take up no room. */
+.h-captcha:empty { display: none; }
+
+/* A button that reads as a link, for the one inside the consent gate. */
+.linklike {
+  background: none; border: 0; padding: 0; font: inherit; color: inherit;
+  text-decoration: underline; cursor: pointer;
+}
+
 /* ---------- Footer ---------- */
 .site-footer { background: var(--black); color: var(--gray-light); padding: 28px 0; font-size: 0.9rem; font-weight: 300; }
 .site-footer a { color: var(--gray-light); text-decoration: none; }

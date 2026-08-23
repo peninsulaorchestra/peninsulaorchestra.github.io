@@ -30,6 +30,12 @@ banner_subtitle: Drop us a line
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" required></textarea>
         </div>
+        <div class="h-captcha" data-captcha="true"></div>
+        <p id="captcha-gate" class="form-status" hidden>
+          The spam check on this form needs cookies before you can send a message.
+          <button type="button" class="linklike" data-cookie-reopen>Review the cookie notice</button>,
+          or email us at <a href="mailto:{{ site.contact_email }}">{{ site.contact_email }}</a> instead.
+        </p>
         <div>
           <button type="submit" class="btn">Send</button>
         </div>
