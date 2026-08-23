@@ -20,7 +20,7 @@ the live site.
 | The executive roster | `_data/executive.yml` |
 | Photo gallery tiles | `_data/gallery.yml` |
 | The About page text | `about.md` |
-| Menu, contact email, footer year | `_config.yml` |
+| Menu, contact email, Facebook link | `_config.yml` |
 | Turning the chat widget on or off | `_config.yml` (`tawk:`) |
 | The cookie notice wording | `_includes/cookie-notice.html` |
 | Where contact form messages are sent | `_config.yml` (`web3forms_key`) |

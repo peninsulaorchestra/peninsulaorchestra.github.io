@@ -1,0 +1,62 @@
+{%- comment -%}
+  Structured data. Search engines and AI assistants read this to learn who the
+  orchestra is, where it plays and what is coming up — facts that are otherwise
+  only implied by the page text. Everything here is generated from _config.yml
+  and _data, so there is nothing extra to keep in sync by hand.
+{%- endcomment -%}
+{%- assign locality = site.rehearsal.city | split: ", " | first -%}
+{%- assign region = site.rehearsal.city | split: ", " | last -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MusicGroup",
+      "@id": {{ site.url | append: "/#organization" | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "url": {{ site.url | jsonify }},
+      "logo": {{ site.logo | absolute_url | jsonify }},
+      "image": {{ site.share_image | absolute_url | jsonify }},
+      "description": {{ site.description | strip_newlines | jsonify }},
+      "foundingDate": {{ site.founded | jsonify }},
+      "email": {{ site.contact_email | jsonify }},
+      "nonprofitStatus": "Nonprofit",
+      "genre": ["Classical music", "Orchestral music"],
+      "sameAs": [{{ site.facebook | jsonify }}],
+      "areaServed": {
+        "@type": "Place",
+        "name": "Niagara Peninsula, Ontario, Canada"
+      },
+      "location": {
+        "@type": "Place",
+        "name": {{ site.rehearsal.venue | jsonify }},
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": {{ site.rehearsal.street | jsonify }},
+          "addressLocality": {{ locality | jsonify }},
+          "addressRegion": {{ region | jsonify }},
+          "postalCode": {{ site.rehearsal.postal | jsonify }},
+          "addressCountry": "CA"
+        }
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": {{ site.url | append: "/#website" | jsonify }},
+      "url": {{ site.url | jsonify }},
+      "name": {{ site.title | jsonify }},
+      "inLanguage": "en-CA",
+      "publisher": { "@id": {{ site.url | append: "/#organization" | jsonify }} }
+    },
+    {
+      "@type": "WebPage",
+      "@id": {{ page.url | absolute_url | jsonify }},
+      "url": {{ page.url | absolute_url | jsonify }},
+      "name": {{ page.head_title | default: site.title | jsonify }},
+      "description": {{ page.description | default: site.description | strip_newlines | jsonify }},
+      "isPartOf": { "@id": {{ site.url | append: "/#website" | jsonify }} },
+      "about": { "@id": {{ site.url | append: "/#organization" | jsonify }} }
+    }
+  ]
+}
+</script>

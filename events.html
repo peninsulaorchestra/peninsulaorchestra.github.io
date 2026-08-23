@@ -18,7 +18,7 @@ banner_subtitle: Upcoming concerts &amp; announcements
     {%- endfor %}
     {%- else %}
     <p class="muted text-center">No concerts are announced just yet. Follow us on
-      <a href="https://www.facebook.com/profile.php?id=100064857121631">Facebook</a>
+      <a href="{{ site.facebook }}">Facebook</a>
       or <a href="mailto:{{ site.contact_email }}">email us</a> to hear when the next
       one is confirmed.</p>
     {%- endif %}
@@ -84,3 +84,5 @@ banner_subtitle: Upcoming concerts &amp; announcements
     </ul>
   </div>
 </section>
+
+{% include schema-events.html %}

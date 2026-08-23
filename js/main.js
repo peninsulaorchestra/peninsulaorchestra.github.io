@@ -175,11 +175,25 @@
   if (notice) {
     var KEY = 'po-cookie-consent';
     var gate = document.querySelector('#captcha-gate');
+    var chatLauncher = document.querySelector('#chat-launcher');
 
     function loadChat() {
       var src = notice.getAttribute('data-tawk-src');
       if (!src || window.Tawk_API) return;
       window.Tawk_API = window.Tawk_API || {};
+      // Both of these have to be set before the script is injected. customStyle
+      // only supports zIndex, so 80 keeps the chat panel above the page but
+      // below the gallery lightbox (100) and the cookie notice (90).
+      window.Tawk_API.customStyle = { zIndex: 80 };
+      window.Tawk_API.onLoad = function () {
+        // Swap their launcher for ours, only once the widget is really ready.
+        window.Tawk_API.hideWidget();
+        if (chatLauncher) { chatLauncher.hidden = false; }
+      };
+      // Closing the panel must not bring their launcher back.
+      window.Tawk_API.onChatMinimized = function () {
+        window.Tawk_API.hideWidget();
+      };
       window.Tawk_LoadStart = new Date();
       var s1 = document.createElement('script'), s0 = document.getElementsByTagName('script')[0];
       s1.async = true;
@@ -238,6 +252,12 @@
       notice.hidden = true;
       setFormGate(false);
     });
+
+    if (chatLauncher) {
+      chatLauncher.addEventListener('click', function () {
+        if (window.Tawk_API && window.Tawk_API.toggle) { window.Tawk_API.toggle(); }
+      });
+    }
 
     // Someone who declined earlier can still change their mind from the form.
     var reopen = document.querySelector('[data-cookie-reopen]');
