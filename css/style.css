@@ -581,4 +581,5 @@ section { padding: 88px 0; }
 /* Concert titles in the list link to the concert's own page. */
 .event .body h3 a { color: inherit; text-decoration: none; }
 .event .body h3 a:hover, .event .body h3 a:focus-visible { text-decoration: underline; }
-.event-writeup { margin-top: 12px; }
+.event-writeup { margin: 12px 0; color: var(--gray); font-weight: 300; font-size: 0.9375rem; }
+.event-writeup ul { margin: 0; padding-left: 1.2em; }

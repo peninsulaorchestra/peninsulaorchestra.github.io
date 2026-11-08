@@ -12,6 +12,7 @@
   The venue's address comes from _data/venues.yml, split into parts, which is
   what Artsdata and Google need; a concert's own one-line `address:` is the
   fallback. `price:` (a number, 0 for free) and/or `tickets:` add an offer.
+  `organizer:` / `organizer_url:` name a host other than the orchestra.
 {%- endcomment -%}
 {%- assign event = include.event -%}
 {%- assign org = site.url | append: "/#organization" -%}
@@ -102,7 +103,7 @@
       {%- endif %}
       "offers": {
         "@type": "Offer",
-        "url": {{ event.url | absolute_url | jsonify }},
+        "url": {{ event.link_url | default: event.url | absolute_url | jsonify }},
         {%- if event.price != nil %}
         "price": {{ event.price | jsonify }},
         {%- endif %}
@@ -125,5 +126,15 @@
         }
         {%- endif %}
       ],
+      {%- if event.organizer %}
+      "organizer": {
+        "@type": "Organization",
+        "name": {{ event.organizer | jsonify }}
+        {%- if event.organizer_url %},
+        "url": {{ event.organizer_url | jsonify }}
+        {%- endif %}
+      }
+      {%- else %}
       "organizer": {{ org_ref }}
+      {%- endif %}
     }

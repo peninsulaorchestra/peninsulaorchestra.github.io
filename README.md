@@ -67,6 +67,9 @@ The easiest start is to copy an existing file from the folder and change it.
 - **`soloist:`** — `Name, instrument`.
 - **`programme:`** — one line per work, `Composer — Work`, with the long dash.
   This is how search engines learn what's being played.
+- **`organizer:`** and **`organizer_url:`** — for an event another group is
+  running that we're playing at. Shown as "Presented by …" and given to
+  search engines as the organizer.
 - Also available: `date_end` for multi-day events, `tickets`, `link_url` and
   `link_text` for a button-style link, and `poster` plus `poster_alt` for an
   image in `images/posters/`.
