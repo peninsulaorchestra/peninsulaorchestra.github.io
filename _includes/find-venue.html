@@ -1,0 +1,12 @@
+{%- comment -%}
+  Sets `venue` to the _data/venues.yml entry whose name matches
+  include.name (ignoring capitals), or to nil if there isn't one.
+{%- endcomment -%}
+{%- assign venue = nil -%}
+{%- if include.name -%}
+  {%- assign wanted = include.name | downcase -%}
+  {%- for v in site.data.venues -%}
+    {%- assign have = v.name | downcase -%}
+    {%- if have == wanted %}{% assign venue = v %}{% break %}{% endif -%}
+  {%- endfor -%}
+{%- endif -%}

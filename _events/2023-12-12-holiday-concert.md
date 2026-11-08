@@ -2,6 +2,7 @@
 title: Holiday Concert
 date: 2023-12-12 19:00
 time: "7:00 pm"
+price: 0
 venue: Trillium United Church
 address: "415 Linwell Rd., St. Catharines"
 description: >-

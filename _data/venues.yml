@@ -1,0 +1,43 @@
+# Places we perform, with their addresses split into parts.
+#
+# Search engines, and Artsdata (the Canadian performing-arts database), need a
+# concert's address in pieces rather than as one line of text. A concert file
+# whose `venue:` matches a `name:` here picks up this address automatically —
+# capitals don't matter — so the address only has to be typed once.
+#
+# If a concert file also has its own `address:` line, that wording is what
+# shows on the page; this list is still what search engines read.
+#
+# Leave out any part you don't know rather than guessing.
+# Keep the quotes around "ON" — without them YAML reads it as "yes".
+
+- name: Trillium United Church
+  street: 415 Linwell Rd.
+  city: St. Catharines
+  province: "ON"
+  postal: L2M 2P3
+
+- name: Wesley United Church
+  street: 244 First Ave N
+  city: Welland
+  province: "ON"
+  postal: L3C 1Y8
+
+- name: St Thomas Church
+  street: 99 Ontario St
+  city: St. Catharines
+  province: "ON"
+
+- name: Congregation B'nai Israel
+  street: 190 Church St
+  city: St. Catharines
+  province: "ON"
+
+- name: Covenant Christian Reformed Church
+  street: 278 Parnell Rd
+  city: St. Catharines
+  province: "ON"
+
+- name: Club Roma Pavilion
+  city: St. Catharines
+  province: "ON"

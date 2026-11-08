@@ -39,7 +39,13 @@
       {%- if event.time %}{{ event.time }}{% endif %}
       {%- if event.time and event.venue %} · {% endif %}
       {%- if event.venue %}{{ event.venue }}{% endif %}
-      {%- if event.address %}, {{ event.address }}{% endif %}
+      {%- comment %} No address typed? Use the venue list's, if it knows the place. {% endcomment %}
+      {%- if event.address %}, {{ event.address }}
+      {%- elsif event.venue %}
+        {%- include find-venue.html name=event.venue %}
+        {%- if venue.street %}, {{ venue.street }}{% endif %}
+        {%- if venue.city %}, {{ venue.city }}{% endif %}
+      {%- endif %}
     </p>
     {%- endif %}
     {%- if event.soloist %}<p class="event-where">Featuring {{ event.soloist }}</p>{% endif %}

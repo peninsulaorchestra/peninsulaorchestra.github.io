@@ -2,6 +2,7 @@
 title: Spring Concert — in memory of Ivan Samson
 date: 2024-05-28 16:00
 time: "4:00 pm"
+price: 10
 venue: Congregation B'nai Israel
 address: "190 Church St, St Catharines"
 soloist: Grace Snippe, cello
