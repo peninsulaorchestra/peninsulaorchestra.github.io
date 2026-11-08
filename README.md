@@ -12,8 +12,7 @@ the live site.
 
 | To change… | Edit this file |
 | --- | --- |
-| Upcoming concerts | `_data/events.yml` |
-| Past concerts | `_data/past_events.yml` |
+| Concerts and events, upcoming and past | One file each in `_events/` |
 | Guest artist biographies | `_data/artists.yml` |
 | News announcements | `_data/news.yml` |
 | Links on the Events page | `_data/links.yml` |
@@ -28,24 +27,52 @@ the live site.
 
 ### Adding a concert
 
-Open `_data/events.yml` and add an entry:
+Every concert is its own file in the `_events/` folder, and gets its own page
+on the site — `_events/2026-12-14-holiday-concert.md` becomes
+`peninsulaorchestra.ca/events/2026-12-14-holiday-concert/`. Search engines and
+AI assistants pick up each concert from its page, so the more fields you fill
+in, the better they can describe it.
+
+On github.com, open the `_events` folder, choose **Add file → Create new
+file**, name it `date-short-title.md` (lower case, hyphens, no spaces), and
+fill it in:
 
 ```yaml
-- date: 2026-09-14
-  title: Season Opening Concert
-  description: Beethoven's Fifth, with guest soloist.
+---
+title: Holiday Concert
+date: 2026-12-14 19:30
+time: 7:30 pm, doors at 7:00
+venue: Trillium United Church
+address: 415 Linwell Rd., St. Catharines
+soloist: Jane Smith, violin
+description: A celebration of the season.
+programme:
+  - Beethoven — Symphony No. 1
+  - Anderson — Sleigh Ride
+---
 ```
 
-The month, day and year on the left of the listing fill in automatically. If
-the date isn't settled yet, leave `date:` off and use `year: 2026` instead —
-it shows as "Date TBA".
+The easiest start is to copy an existing file from the folder and change it.
 
-Optional fields: `time`, `venue`, `address`, `soloist`, `tickets`, `description`,
-`programme` (a list of works), and `date_end` for multi-day events.
+- **`date:`** — `YYYY-MM-DD`, with the start time on the 24-hour clock after
+  it if you know it (`2026-12-14 19:30`). The time is what search engines
+  show; `time:` is the wording shown on the page.
+- **`soloist:`** — `Name, instrument`.
+- **`programme:`** — one line per work, `Composer — Work`, with the long dash.
+  This is how search engines learn what's being played.
+- Also available: `date_end` for multi-day events, `tickets`, `link_url` and
+  `link_text` for a button-style link, and `poster` plus `poster_alt` for an
+  image in `images/posters/`.
+- **Date not settled?** Leave `date:` off and put `year: 2027` instead; it
+  shows as "Date TBA" at the end of the upcoming list.
+- **Only know the season?** Use `date_text: Spring 2027` for what's shown,
+  plus a rough `date:` so it sorts in the right place.
+- Anything written **below** the closing `---` appears on the concert's own
+  page as a longer write-up.
 
-When a concert has happened, move its entry from `_data/events.yml` to
-`_data/past_events.yml`. If the "Upcoming Concerts" list is empty the page shows
-a short "nothing announced yet" message instead of an empty gap.
+Concerts move from "Upcoming" to "Past Concerts" by themselves once they're
+over — there's nothing to move. The site only rebuilds when something is
+changed, so the move shows up at the next update.
 
 ### Adding a photo
 
@@ -96,7 +123,11 @@ The check names the file and the line number, so start there.
   page. Change the menu here once instead of in five files.
 - `_layouts/page.html` — adds the centred prose column used by the About page.
 - `_includes/facts.html` — the grey label/value list used in a few places.
-- `_data/*.yml` — the content that repeats: concerts, news, people, photos.
+- `_layouts/event.html` — a concert's own page, used by every file in `_events/`.
+- `_includes/schema*.html` — the structured data search engines and AI
+  assistants read, generated from the concert files and `_config.yml`.
+- `_events/*.md` — one file per concert.
+- `_data/*.yml` — the other content that repeats: news, people, photos.
 - `*.html` / `*.md` — one file per page, holding just that page's content.
 
 ## Working locally (optional)

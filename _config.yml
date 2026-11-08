@@ -82,6 +82,24 @@ nav:
   - title: Contact Us
     url: /contact/
 
+# Every concert is a file in _events/ and gets its own page at
+# /events/<file-name>/. See README.md for the fields.
+collections:
+  events:
+    output: true
+    permalink: /events/:name/
+
+defaults:
+  - scope:
+      type: events
+    values:
+      layout: event
+
+# Concert times are Niagara local time; this also decides which concerts count
+# as upcoming. `future` lets a concert dated after the build still get its page.
+timezone: America/Toronto
+future: true
+
 plugins:
   - jekyll-sitemap
 

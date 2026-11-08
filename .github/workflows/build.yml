@@ -40,7 +40,7 @@ jobs:
                   print("  Common causes: a missing space after a colon, inconsistent")
                   print("  indentation, or a value containing : or # that needs quoting.\n")
 
-          for path in sorted(glob.glob("*.md") + glob.glob("*.html")):
+          for path in sorted(glob.glob("*.md") + glob.glob("*.html") + glob.glob("_events/*.md")):
               text = open(path).read()
               if not text.startswith("---"):
                   continue
