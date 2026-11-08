@@ -13,6 +13,7 @@ the live site.
 | To change… | Edit this file |
 | --- | --- |
 | Concerts and events, upcoming and past | One file each in `_events/` |
+| Venue addresses | `_data/venues.yml` |
 | Guest artist biographies | `_data/artists.yml` |
 | News announcements | `_data/news.yml` |
 | Links on the Events page | `_data/links.yml` |
@@ -57,6 +58,12 @@ The easiest start is to copy an existing file from the folder and change it.
 - **`date:`** — `YYYY-MM-DD`, with the start time on the 24-hour clock after
   it if you know it (`2026-12-14 19:30`). The time is what search engines
   show; `time:` is the wording shown on the page.
+- **`venue:`** — if the venue is in `_data/venues.yml` you can skip
+  `address:`; the address is filled in from there. For a new venue, add it to
+  that list too: search engines and Artsdata need the street, city and
+  province as separate parts, which a one-line `address:` can't give them.
+- **`price:`** — the ticket price as a plain number (`15`), or `0` if admission
+  is free. `tickets:` is the wording shown on the page.
 - **`soloist:`** — `Name, instrument`.
 - **`programme:`** — one line per work, `Composer — Work`, with the long dash.
   This is how search engines learn what's being played.

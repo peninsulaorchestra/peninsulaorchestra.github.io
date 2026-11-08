@@ -8,9 +8,17 @@
   Soloists are read as "Name, instrument", and programme lines as
   "Composer — Work" ("A/B — Work" for two composers; "arr. X" is dropped,
   since an arranger isn't the composer).
+
+  The venue's address comes from _data/venues.yml, split into parts, which is
+  what Artsdata and Google need; a concert's own one-line `address:` is the
+  fallback. `price:` (a number, 0 for free) and/or `tickets:` add an offer.
 {%- endcomment -%}
 {%- assign event = include.event -%}
 {%- assign org = site.url | append: "/#organization" -%}
+{%- capture org_ref -%}
+{ "@type": "MusicGroup", "@id": {{ org | jsonify }}, "name": {{ site.title | jsonify }}, "url": {{ site.url | jsonify }} }
+{%- endcapture -%}
+{%- include find-venue.html name=event.venue -%}
 {%- assign clock = event.date | date: "%H:%M" -%}
 {%- if clock == "00:00" -%}
   {%- assign start = event.date | date: "%Y-%m-%d" -%}
@@ -19,6 +27,7 @@
 {%- endif -%}
     {
       "@type": "MusicEvent",
+      "additionalType": "http://kg.artsdata.ca/resource/PerformingArtsEvent",
       "@id": {{ event.url | absolute_url | append: "#event" | jsonify }},
       "name": {{ event.title | jsonify }},
       "url": {{ event.url | absolute_url | jsonify }},
@@ -38,7 +47,24 @@
       "location": {
         "@type": "Place",
         "name": {{ event.venue | jsonify }}
-        {%- if event.address %},
+        {%- if venue %},
+        "address": {
+          "@type": "PostalAddress",
+          {%- if venue.street %}
+          "streetAddress": {{ venue.street | jsonify }},
+          {%- endif %}
+          {%- if venue.city %}
+          "addressLocality": {{ venue.city | jsonify }},
+          {%- endif %}
+          {%- if venue.province %}
+          "addressRegion": {{ venue.province | jsonify }},
+          {%- endif %}
+          {%- if venue.postal %}
+          "postalCode": {{ venue.postal | jsonify }},
+          {%- endif %}
+          "addressCountry": "CA"
+        }
+        {%- elsif event.address %},
         "address": {{ event.address | jsonify }}
         {%- endif %}
       },
@@ -70,8 +96,24 @@
         {%- endfor %}
       ],
       {%- endif %}
+      {%- if event.price != nil or event.tickets %}
+      {%- if event.price == 0 %}
+      "isAccessibleForFree": true,
+      {%- endif %}
+      "offers": {
+        "@type": "Offer",
+        "url": {{ event.url | absolute_url | jsonify }},
+        {%- if event.price != nil %}
+        "price": {{ event.price | jsonify }},
+        {%- endif %}
+        {%- if event.tickets %}
+        "description": {{ event.tickets | jsonify }},
+        {%- endif %}
+        "priceCurrency": "CAD"
+      },
+      {%- endif %}
       "performer": [
-        { "@id": {{ org | jsonify }} }
+        {{ org_ref }}
         {%- if event.soloist %}
         {%- assign soloist = event.soloist | split: ", " %},
         {
@@ -83,5 +125,5 @@
         }
         {%- endif %}
       ],
-      "organizer": { "@id": {{ org | jsonify }} }
+      "organizer": {{ org_ref }}
     }

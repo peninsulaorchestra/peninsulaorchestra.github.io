@@ -1,0 +1,10 @@
+---
+layout: null
+sitemap: false
+---
+# Every crawler is welcome, including Artsdata's (artsdata-crawler), which
+# collects Canadian performing-arts events from organizations' own sites.
+User-agent: *
+Allow: /
+
+Sitemap: {{ "/sitemap.xml" | absolute_url }}
