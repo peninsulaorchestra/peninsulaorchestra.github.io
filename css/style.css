@@ -613,11 +613,12 @@ section { padding: 88px 0; }
     #83663a 52.2%, #bda55d 54%, #eedba2 56%, #eedba2 100%);
   background-size: 300% 100%;
   background-position: 81% 0;
-  animation: hope-sweep 6s ease-in-out infinite;
+  /* 6 seconds to sweep across, then 3 seconds all gold before the next pass. */
+  animation: hope-sweep 9s ease-in-out infinite;
 }
 @keyframes hope-sweep {
   0%        { background-position: 81% 0; }  /* all gold, band off to the left */
-  50%, 100% { background-position: 44% 0; }  /* all gold, band off to the right; rest */
+  67%, 100% { background-position: 44% 0; }  /* all gold, band off to the right; rest */
 }
 @media (prefers-reduced-motion: reduce) {
   .poster-fx { display: none; }
