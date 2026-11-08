@@ -583,3 +583,43 @@ section { padding: 88px 0; }
 .event .body h3 a:hover, .event .body h3 a:focus-visible { text-decoration: underline; }
 .event-writeup { margin: 12px 0; color: var(--gray); font-weight: 300; font-size: 0.9375rem; }
 .event-writeup ul { margin: 0; padding-left: 1.2em; }
+
+/* ---------- Poster effects ---------- */
+/* A concert file can set `poster_effect: <name>` to lay one of these over its
+   poster. Each effect is a gradient shown only through a stencil (mask) of
+   part of the poster, so the artwork around it stays still. */
+.poster-fx-frame {
+  position: relative; display: inline-block; line-height: 0;
+  width: 100%; max-width: 320px;
+}
+.poster-fx-frame img { max-width: 100%; }
+.poster-fx { position: absolute; inset: 1px; pointer-events: none; }
+
+/* Hope of Christmas: "Hope" rests all gold, then a band of the poster's dark
+   brown sweeps across it from left to right and off the end, leaving it gold
+   again. The mask is the four letters cut from the poster; the colours were
+   sampled from the lettering, darkest brown to palest gold.
+
+   The gradient is three times the poster's width, with the dark band in the
+   middle. The letters span about 8%–42% of the poster's width; the two
+   positions below put the band fully left of the H and fully right of the e,
+   so the loop restarts from all gold with no visible jump. */
+.poster-fx--hope-sweep {
+  -webkit-mask: url("../images/posters/hope-of-christmas-2026-hope-mask.png") 0 0 / 100% 100% no-repeat;
+          mask: url("../images/posters/hope-of-christmas-2026-hope-mask.png") 0 0 / 100% 100% no-repeat;
+  background: linear-gradient(90deg,
+    #eedba2 0%, #eedba2 44%, #bda55d 46%, #83663a 47.8%,
+    #462d28 49%, #462d28 51%,
+    #83663a 52.2%, #bda55d 54%, #eedba2 56%, #eedba2 100%);
+  background-size: 300% 100%;
+  background-position: 81% 0;
+  /* 6 seconds to sweep across, then 3 seconds all gold before the next pass. */
+  animation: hope-sweep 9s ease-in-out infinite;
+}
+@keyframes hope-sweep {
+  0%        { background-position: 81% 0; }  /* all gold, band off to the left */
+  67%, 100% { background-position: 44% 0; }  /* all gold, band off to the right; rest */
+}
+@media (prefers-reduced-motion: reduce) {
+  .poster-fx { display: none; }
+}
