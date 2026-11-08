@@ -6,14 +6,36 @@ description: Upcoming concerts, past programmes, news and links from the Peninsu
 banner_title: Events, News &amp; Links
 banner_subtitle: Upcoming concerts &amp; announcements
 ---
+{%- comment -%}
+  Concerts live in _events/, one file each. A concert is "upcoming" until the
+  day after it ends (or if its date is still TBA), then moves to "Past
+  Concerts" by itself. The site only rebuilds when something is changed, so
+  the move shows up at the next update after the concert.
+{%- endcomment -%}
+{%- assign today = site.time | date: "%Y-%m-%d" -%}
+{%- assign upcoming = "" | split: "" -%}
+{%- assign tba = "" | split: "" -%}
+{%- assign past = "" | split: "" -%}
+{%- assign by_date = site.events | sort: "date" -%}
+{%- for event in by_date -%}
+  {%- assign last_day = event.date_end | default: event.date | date: "%Y-%m-%d" -%}
+  {%- if event.year and event.date_text == nil -%}
+    {%- assign tba = tba | push: event -%}
+  {%- elsif last_day >= today -%}
+    {%- assign upcoming = upcoming | push: event -%}
+  {%- else -%}
+    {%- assign past = past | unshift: event -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign upcoming = upcoming | concat: tba -%}
 <section>
   <div class="container narrow">
     <h2 class="section-title">Upcoming Concerts</h2>
     <hr class="divider" />
     <p class="section-intro">Our season runs mid-September through June, with community concerts throughout.</p>
 
-    {%- if site.data.events and site.data.events.size > 0 %}
-    {%- for event in site.data.events %}
+    {%- if upcoming.size > 0 %}
+    {%- for event in upcoming %}
     {% include event.html event=event %}
     {%- endfor %}
     {%- else %}
@@ -29,7 +51,7 @@ banner_subtitle: Upcoming concerts &amp; announcements
   <div class="container narrow">
     <h2 class="section-title">Past Concerts</h2>
     <hr class="divider" />
-    {%- for event in site.data.past_events %}
+    {%- for event in past %}
     {% include event.html event=event %}
     {%- endfor %}
   </div>

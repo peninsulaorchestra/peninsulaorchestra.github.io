@@ -1,0 +1,45 @@
+---
+layout: default
+---
+{%- comment -%}
+  A concert's own page, one for each file in _events/. Search engines and AI
+  assistants treat each of these as a distinct event, with the full details in
+  the structured data at the bottom.
+{%- endcomment -%}
+{%- if page.date_text -%}
+  {%- assign when = page.date_text -%}
+{%- elsif page.year -%}
+  {%- assign when = "Date to be announced, " | append: page.year -%}
+{%- elsif page.date_end -%}
+  {%- assign start_month = page.date | date: "%B" -%}
+  {%- assign end_month = page.date_end | date: "%B" -%}
+  {%- if start_month == end_month -%}
+    {%- capture when %}{{ page.date | date: "%B %-d" }}–{{ page.date_end | date: "%-d, %Y" }}{% endcapture -%}
+  {%- else -%}
+    {%- capture when %}{{ page.date | date: "%B %-d" }} – {{ page.date_end | date: "%B %-d, %Y" }}{% endcapture -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign when = page.date | date: "%A, %B %-d, %Y" -%}
+{%- endif %}
+<section class="page-banner">
+  <h1>{{ page.title }}</h1>
+  <p>{{ when }}{% if page.venue %} · {{ page.venue }}{% endif %}</p>
+</section>
+
+<section>
+  <div class="container narrow">
+    {% include event.html event=page on_own_page=true %}
+    <p class="text-center"><a href="{{ '/events/' | relative_url }}">← All concerts and events</a></p>
+  </div>
+</section>
+
+{%- unless page.year or page.date_text %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+{% include schema-event.html event=page %}
+  ]
+}
+</script>
+{%- endunless %}

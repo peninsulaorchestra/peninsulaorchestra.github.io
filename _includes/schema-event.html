@@ -1,0 +1,87 @@
+{%- comment -%}
+  One concert as a schema.org MusicEvent object, without the surrounding
+  <script> tag. Used by the concert's own page and by the Events page list.
+  Callers must only pass events with an exact date, i.e. no `year:` (TBA) and
+  no `date_text:` (approximate).
+
+  A start time is included when the `date:` has one (e.g. 2026-05-30 16:00).
+  Soloists are read as "Name, instrument", and programme lines as
+  "Composer — Work" ("A/B — Work" for two composers; "arr. X" is dropped,
+  since an arranger isn't the composer).
+{%- endcomment -%}
+{%- assign event = include.event -%}
+{%- assign org = site.url | append: "/#organization" -%}
+{%- assign clock = event.date | date: "%H:%M" -%}
+{%- if clock == "00:00" -%}
+  {%- assign start = event.date | date: "%Y-%m-%d" -%}
+{%- else -%}
+  {%- assign start = event.date | date: "%Y-%m-%dT%H:%M:%S%:z" -%}
+{%- endif -%}
+    {
+      "@type": "MusicEvent",
+      "@id": {{ event.url | absolute_url | append: "#event" | jsonify }},
+      "name": {{ event.title | jsonify }},
+      "url": {{ event.url | absolute_url | jsonify }},
+      "startDate": {{ start | jsonify }},
+      {%- if event.date_end %}
+      "endDate": {{ event.date_end | date: "%Y-%m-%d" | jsonify }},
+      {%- endif %}
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      {%- if event.description %}
+      "description": {{ event.description | strip_newlines | jsonify }},
+      {%- endif %}
+      {%- if event.poster %}
+      "image": {{ "/images/posters/" | append: event.poster | absolute_url | jsonify }},
+      {%- endif %}
+      {%- if event.venue %}
+      "location": {
+        "@type": "Place",
+        "name": {{ event.venue | jsonify }}
+        {%- if event.address %},
+        "address": {{ event.address | jsonify }}
+        {%- endif %}
+      },
+      {%- endif %}
+      {%- if event.programme %}
+      {%- assign works = event.programme | where_exp: "w", "w != 'Intermission'" %}
+      "workPerformed": [
+        {%- for line in works %}
+        {%- assign parts = line | split: " — " %}
+        {%- if parts.size > 1 %}
+          {%- assign composer = parts[0] | split: "arr. " | first | strip %}
+          {%- assign piece = line | remove_first: parts[0] | remove_first: " — " %}
+        {%- else %}
+          {%- assign composer = "" %}
+          {%- assign piece = line %}
+        {%- endif %}
+        {
+          "@type": "MusicComposition",
+          "name": {{ piece | jsonify }}
+          {%- if composer != "" %}
+          {%- assign composers = composer | split: "/" %},
+          "composer": [
+            {%- for name in composers %}
+            { "@type": "Person", "name": {{ name | strip | jsonify }} }{% unless forloop.last %},{% endunless %}
+            {%- endfor %}
+          ]
+          {%- endif %}
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      {%- endif %}
+      "performer": [
+        { "@id": {{ org | jsonify }} }
+        {%- if event.soloist %}
+        {%- assign soloist = event.soloist | split: ", " %},
+        {
+          "@type": "Person",
+          "name": {{ soloist[0] | jsonify }}
+          {%- if soloist.size > 1 %},
+          "description": {{ event.soloist | remove_first: soloist[0] | remove_first: ", " | jsonify }}
+          {%- endif %}
+        }
+        {%- endif %}
+      ],
+      "organizer": { "@id": {{ org | jsonify }} }
+    }

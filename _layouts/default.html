@@ -9,26 +9,40 @@
 {%- else -%}
   {%- assign asset_v = site.time | date: "%s" -%}
 {%- endif -%}
+{%- comment -%}
+  Concert pages (_events/) don't set these by hand; they come from the concert.
+{%- endcomment -%}
+{%- if page.collection == "events" -%}
+  {%- assign head_title = page.title | append: " — " | append: site.title -%}
+  {%- assign meta_description = page.description | default: site.description | strip_newlines | truncate: 160 -%}
+  {%- if page.poster -%}{%- assign share_img = "/images/posters/" | append: page.poster -%}{%- endif -%}
+  {%- assign nav_url = "/events/" -%}
+{%- else -%}
+  {%- assign head_title = page.head_title | default: site.title -%}
+  {%- assign meta_description = page.description | default: site.description -%}
+  {%- assign share_img = page.image -%}
+  {%- assign nav_url = page.url -%}
+{%- endif -%}
+{%- assign share_img = share_img | default: site.share_image -%}
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ page.head_title | default: site.title }}</title>
-  <meta name="description" content="{{ page.description | default: site.description }}" />
+  <title>{{ head_title }}</title>
+  <meta name="description" content="{{ meta_description | escape_once }}" />
   <link rel="canonical" href="{{ page.url | absolute_url }}" />
 
   {%- comment -%} How the page looks when shared to Facebook, Messenger and the rest. {%- endcomment -%}
-  {%- assign share_img = page.image | default: site.share_image %}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="{{ site.title }}" />
-  <meta property="og:title" content="{{ page.head_title | default: site.title }}" />
-  <meta property="og:description" content="{{ page.description | default: site.description }}" />
+  <meta property="og:title" content="{{ head_title | escape_once }}" />
+  <meta property="og:description" content="{{ meta_description | escape_once }}" />
   <meta property="og:url" content="{{ page.url | absolute_url }}" />
   <meta property="og:image" content="{{ share_img | absolute_url }}" />
   <meta property="og:locale" content="en_CA" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ page.head_title | default: site.title }}" />
-  <meta name="twitter:description" content="{{ page.description | default: site.description }}" />
+  <meta name="twitter:title" content="{{ head_title | escape_once }}" />
+  <meta name="twitter:description" content="{{ meta_description | escape_once }}" />
   <meta name="twitter:image" content="{{ share_img | absolute_url }}" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,7 +64,7 @@
       <nav class="main-nav">
         <ul>
           {%- for item in site.nav %}
-          <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} class="active"{% endif %}>{{ item.title }}</a></li>
+          <li><a href="{{ item.url | relative_url }}"{% if nav_url == item.url %} class="active"{% endif %}>{{ item.title }}</a></li>
           {%- endfor %}
         </ul>
       </nav>

@@ -1,15 +1,9 @@
 {%- assign event = include.event %}
 <div class="event">
   <div class="date">
-    {%- if event.date %}
-    <span class="month">{{ event.date | date: "%b" }}</span>
-    {%- if event.date_end %}
-    <span class="day">{{ event.date | date: "%-d" }}–{{ event.date_end | date: "%-d" }}</span>
-    {%- else %}
-    <span class="day">{{ event.date | date: "%-d" }}</span>
-    {%- endif %}
-    <span class="year">{{ event.date | date: "%Y" }}</span>
-    {%- elsif event.date_text %}
+    {%- comment -%} Every file in _events/ has a date (Jekyll fills one in), so the
+        approximate and TBA cases have to be checked first. {%- endcomment -%}
+    {%- if event.date_text %}
     {%- assign months = "January,February,March,April,May,June,July,August,September,October,November,December" | split: "," %}
     {%- assign parts = event.date_text | split: " " %}
     {%- assign first = parts | first %}
@@ -22,14 +16,24 @@
     {%- if parts.size > 1 %}
     <span class="year">{{ parts | last }}</span>
     {%- endif %}
-    {%- else %}
+    {%- elsif event.year %}
     <span class="month">Date</span>
     <span class="day">TBA</span>
     <span class="year">{{ event.year }}</span>
+    {%- else %}
+    <span class="month">{{ event.date | date: "%b" }}</span>
+    {%- if event.date_end %}
+    <span class="day">{{ event.date | date: "%-d" }}–{{ event.date_end | date: "%-d" }}</span>
+    {%- else %}
+    <span class="day">{{ event.date | date: "%-d" }}</span>
+    {%- endif %}
+    <span class="year">{{ event.date | date: "%Y" }}</span>
     {%- endif %}
   </div>
   <div class="body">
-    <h3>{{ event.title }}</h3>
+    {%- unless include.on_own_page %}
+    <h3><a href="{{ event.url | relative_url }}">{{ event.title }}</a></h3>
+    {%- endunless %}
     {%- if event.time or event.venue %}
     <p class="event-where">
       {%- if event.time %}{{ event.time }}{% endif %}
@@ -40,6 +44,9 @@
     {%- endif %}
     {%- if event.soloist %}<p class="event-where">Featuring {{ event.soloist }}</p>{% endif %}
     {%- if event.description %}<p>{{ event.description }}</p>{% endif %}
+    {%- if include.on_own_page and event.content != "" %}
+    <div class="event-writeup">{{ event.content }}</div>
+    {%- endif %}
     {%- if event.programme %}
     <ul class="programme">
       {%- for work in event.programme %}
