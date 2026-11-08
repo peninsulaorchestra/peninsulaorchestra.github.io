@@ -38,6 +38,12 @@
   city: St. Catharines
   province: "ON"
 
+- name: Bethany Community Church
+  street: 1388 Third Street S.
+  city: St. Catharines
+  province: "ON"
+  postal: L2R 6P9
+
 - name: Club Roma Pavilion
   city: St. Catharines
   province: "ON"

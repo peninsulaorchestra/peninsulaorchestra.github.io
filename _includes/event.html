@@ -48,6 +48,7 @@
       {%- endif %}
     </p>
     {%- endif %}
+    {%- if event.organizer %}<p class="event-where">Presented by {% if event.organizer_url %}<a href="{{ event.organizer_url }}">{{ event.organizer }}</a>{% else %}{{ event.organizer }}{% endif %}</p>{% endif %}
     {%- if event.soloist %}<p class="event-where">Featuring {{ event.soloist }}</p>{% endif %}
     {%- if event.description %}<p>{{ event.description }}</p>{% endif %}
     {%- if include.on_own_page and event.content != "" %}
