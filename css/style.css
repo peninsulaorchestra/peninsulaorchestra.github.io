@@ -583,3 +583,37 @@ section { padding: 88px 0; }
 .event .body h3 a:hover, .event .body h3 a:focus-visible { text-decoration: underline; }
 .event-writeup { margin: 12px 0; color: var(--gray); font-weight: 300; font-size: 0.9375rem; }
 .event-writeup ul { margin: 0; padding-left: 1.2em; }
+
+/* ---------- Poster effects ---------- */
+/* A concert file can set `poster_effect: <name>` to lay one of these over its
+   poster. Each effect is a gradient shown only through a stencil (mask) of
+   part of the poster, so the artwork around it stays still. */
+.poster-fx-frame {
+  position: relative; display: inline-block; line-height: 0;
+  width: 100%; max-width: 320px;
+}
+.poster-fx-frame img { max-width: 100%; }
+.poster-fx { position: absolute; inset: 1px; pointer-events: none; }
+
+/* Hope of Christmas: the dark brown of "Hope" sweeps across the word and back.
+   The mask is the four letters cut from the poster; its colours were sampled
+   from the lettering, darkest brown to palest gold. At the start and end of
+   each pass it matches the printed poster, so there's no visible jump. */
+.poster-fx--hope-sweep {
+  -webkit-mask: url("../images/posters/hope-of-christmas-2026-hope-mask.png") 0 0 / 100% 100% no-repeat;
+          mask: url("../images/posters/hope-of-christmas-2026-hope-mask.png") 0 0 / 100% 100% no-repeat;
+  background: linear-gradient(90deg,
+    #eedba2 0%, #eedba2 40.3%, #bda55d 44%, #83663a 46.5%,
+    #462d28 48.7%, #462d28 51.3%,
+    #83663a 53.5%, #bda55d 56%, #eedba2 59.7%, #eedba2 100%);
+  background-size: 300% 100%;
+  background-position: 70% 0;
+  animation: hope-sweep 7s ease-in-out infinite alternate;
+}
+@keyframes hope-sweep {
+  0%, 15%   { background-position: 70% 0; }
+  85%, 100% { background-position: 55% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .poster-fx { display: none; }
+}

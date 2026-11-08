@@ -67,8 +67,15 @@
     {%- endif %}
     {%- if event.poster %}
     <a class="event-poster" href="{{ '/images/posters/' | append: event.poster | relative_url }}">
+      {%- if event.poster_effect %}
+      <span class="poster-fx-frame">
+      {%- endif %}
       <img src="{{ '/images/posters/' | append: event.poster | relative_url }}"
            alt="{{ event.poster_alt | default: event.title }}" loading="lazy" />
+      {%- if event.poster_effect %}
+        <span class="poster-fx poster-fx--{{ event.poster_effect }}" aria-hidden="true"></span>
+      </span>
+      {%- endif %}
     </a>
     {%- endif %}
   </div>
