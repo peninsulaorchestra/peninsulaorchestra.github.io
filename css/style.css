@@ -595,24 +595,29 @@ section { padding: 88px 0; }
 .poster-fx-frame img { max-width: 100%; }
 .poster-fx { position: absolute; inset: 1px; pointer-events: none; }
 
-/* Hope of Christmas: the dark brown of "Hope" sweeps across the word and back.
-   The mask is the four letters cut from the poster; its colours were sampled
-   from the lettering, darkest brown to palest gold. At the start and end of
-   each pass it matches the printed poster, so there's no visible jump. */
+/* Hope of Christmas: "Hope" rests all gold, then a band of the poster's dark
+   brown sweeps across it from left to right and off the end, leaving it gold
+   again. The mask is the four letters cut from the poster; the colours were
+   sampled from the lettering, darkest brown to palest gold.
+
+   The gradient is three times the poster's width, with the dark band in the
+   middle. The letters span about 8%–42% of the poster's width; the two
+   positions below put the band fully left of the H and fully right of the e,
+   so the loop restarts from all gold with no visible jump. */
 .poster-fx--hope-sweep {
   -webkit-mask: url("../images/posters/hope-of-christmas-2026-hope-mask.png") 0 0 / 100% 100% no-repeat;
           mask: url("../images/posters/hope-of-christmas-2026-hope-mask.png") 0 0 / 100% 100% no-repeat;
   background: linear-gradient(90deg,
-    #eedba2 0%, #eedba2 40.3%, #bda55d 44%, #83663a 46.5%,
-    #462d28 48.7%, #462d28 51.3%,
-    #83663a 53.5%, #bda55d 56%, #eedba2 59.7%, #eedba2 100%);
+    #eedba2 0%, #eedba2 44%, #bda55d 46%, #83663a 47.8%,
+    #462d28 49%, #462d28 51%,
+    #83663a 52.2%, #bda55d 54%, #eedba2 56%, #eedba2 100%);
   background-size: 300% 100%;
-  background-position: 70% 0;
-  animation: hope-sweep 7s ease-in-out infinite alternate;
+  background-position: 81% 0;
+  animation: hope-sweep 6s ease-in-out infinite;
 }
 @keyframes hope-sweep {
-  0%, 15%   { background-position: 70% 0; }
-  85%, 100% { background-position: 55% 0; }
+  0%        { background-position: 81% 0; }  /* all gold, band off to the left */
+  50%, 100% { background-position: 44% 0; }  /* all gold, band off to the right; rest */
 }
 @media (prefers-reduced-motion: reduce) {
   .poster-fx { display: none; }
