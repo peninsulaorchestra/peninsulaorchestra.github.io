@@ -10,6 +10,7 @@ link_text: Reserve seats
 organizer: Niagara Life Centre
 organizer_url: https://niagaralifecentre.ca/
 poster: hope-of-christmas-2026.jpg
+poster_effect: hope-sweep
 poster_alt: >-
   Hope of Christmas poster — featuring the Niagara Peninsula Orchestra,
   November 20, 2026, Bethany Community Church, 1388 Third Street S., St.
