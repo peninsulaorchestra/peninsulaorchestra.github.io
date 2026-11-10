@@ -20,7 +20,6 @@
       "description": {{ site.description | strip_newlines | jsonify }},
       "foundingDate": {{ site.founded | jsonify }},
       "email": {{ site.contact_email | jsonify }},
-      "nonprofitStatus": "Nonprofit",
       "genre": ["Classical music", "Orchestral music"],
       "sameAs": [{{ site.facebook | jsonify }}],
       "areaServed": {
@@ -55,9 +54,6 @@
       "name": {{ head_title | jsonify }},
       "description": {{ meta_description | strip_newlines | jsonify }},
       "isPartOf": { "@id": {{ site.url | append: "/#website" | jsonify }} },
-      {%- if page.collection == "events" and page.year == nil and page.date_text == nil %}
-      "mainEntity": { "@id": {{ page.url | absolute_url | append: "#event" | jsonify }} },
-      {%- endif %}
       "about": { "@id": {{ site.url | append: "/#organization" | jsonify }} }
     }
   ]
