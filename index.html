@@ -18,20 +18,6 @@ head_title: Peninsula Orchestra — Community Concerts in Niagara
 {%- endfor -%}
 <section class="hero hero--cover">
   <div class="container">
-    {%- if next %}
-    {%- assign last_day = next.date_end | default: next.date | date: "%Y-%m-%d" %}
-    <a class="next-concert" href="{{ next.url | relative_url }}" data-last-day="{{ last_day }}">
-      <span class="next-concert__label">Next concert</span>
-      <span class="next-concert__title">{{ next.title }}</span>
-      <span class="next-concert__when">
-        {{- next.date | date: "%A, %B %-d" }}
-        {%- if next.time %} · {{ next.time }}{% endif -%}
-      </span>
-      {%- if next.venue %}
-      <span class="next-concert__when">{{ next.venue }}</span>
-      {%- endif %}
-    </a>
-    {%- endif %}
     <h1>Welcome to the {{ site.title }}</h1>
     <p>{{ site.tagline }}</p>
     <div class="hero-actions">
@@ -41,4 +27,17 @@ head_title: Peninsula Orchestra — Community Concerts in Niagara
       <a class="btn outline" href="{{ '/events/' | relative_url }}">Upcoming Concerts and News</a>
     </div>
   </div>
+  {%- if next %}
+  {%- assign last_day = next.date_end | default: next.date | date: "%Y-%m-%d" %}
+  <a class="next-concert" href="{{ next.url | relative_url }}" data-last-day="{{ last_day }}">
+    <span class="next-concert__label">Next concert</span>
+    <span class="next-concert__title">{{ next.title }}</span>
+    <span class="next-concert__when">
+      {{- next.date | date: "%a, %b %-d" }}
+      {%- if next.time %} · {{ next.time }}{% endif %}
+      {%- if next.venue %} · {{ next.venue }}{% endif -%}
+    </span>
+    <span class="next-concert__cta">Details&nbsp;→</span>
+  </a>
+  {%- endif %}
 </section>
