@@ -124,6 +124,42 @@ nav.main-nav a.active { color: #fff; border-bottom-color: #fff; }
   font-size: 0.78rem; font-weight: 600; color: #fff; margin-bottom: 20px; opacity: 0.85;
 }
 
+/* "Next concert" band along the bottom of the homepage photograph, linking to
+   the concert's page. It sits in the hero's flow (not on top of it), so it
+   can never cover the welcome text, however short the window. */
+.hero.hero--cover {
+  flex-direction: column; padding: 110px 0 0;
+}
+.hero.hero--cover > .container { margin: auto 0; padding-bottom: 48px; }
+.next-concert {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center;
+  column-gap: 22px; row-gap: 4px; width: 100%;
+  padding: 18px 24px; color: #fff; text-decoration: none;
+  background: rgba(12, 12, 12, 0.62);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  transition: background 0.18s;
+}
+.next-concert[hidden] { display: none; }
+.next-concert:hover, .next-concert:focus-visible { background: rgba(12, 12, 12, 0.8); }
+.next-concert__label {
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.28em; text-transform: uppercase; opacity: 0.8;
+}
+.next-concert__title { font-family: var(--serif); font-weight: 700; font-size: 1.3rem; line-height: 1.25; }
+.next-concert__when { font-family: var(--sans); font-size: 0.95rem; opacity: 0.92; }
+.next-concert__cta {
+  font-family: var(--sans); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6); padding-bottom: 2px;
+}
+.next-concert:hover .next-concert__cta { border-bottom-color: #fff; }
+@media (max-width: 700px) {
+  .hero.hero--cover { padding-top: 90px; }
+  .next-concert { flex-direction: column; align-items: center; text-align: center; padding: 16px 20px 18px; }
+  .next-concert__cta { margin-top: 6px; }
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-block; background: var(--black); color: #fff;
