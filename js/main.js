@@ -14,6 +14,15 @@
     });
   }
 
+  // Home page "Next concert" notice: the site only rebuilds when something
+  // changes, so hide the notice ourselves once the concert's last day is over.
+  var nextConcert = document.querySelector('.next-concert[data-last-day]');
+  if (nextConcert) {
+    var d = new Date();
+    var today = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+    if (today > nextConcert.getAttribute('data-last-day')) nextConcert.hidden = true;
+  }
+
   // Contact form: GitHub Pages has no backend, so the form posts to Web3Forms,
   // which emails the message on to the orchestra. Submitting over fetch keeps
   // the visitor on the page; without JavaScript the plain form POST still works.

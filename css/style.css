@@ -124,6 +124,39 @@ nav.main-nav a.active { color: #fff; border-bottom-color: #fff; }
   font-size: 0.78rem; font-weight: 600; color: #fff; margin-bottom: 20px; opacity: 0.85;
 }
 
+/* "Next concert" notice above the homepage welcome: a dark, frosted card so
+   it reads over any part of the photograph, linking to the concert's page. */
+.next-concert {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 4px;
+  margin: 0 auto 34px; padding: 16px 30px 18px; max-width: 640px;
+  color: #fff; text-decoration: none;
+  background: rgba(16, 16, 16, 0.55);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  transition: background 0.18s, border-color 0.18s;
+}
+.next-concert[hidden] { display: none; }
+.next-concert:hover, .next-concert:focus-visible {
+  background: rgba(16, 16, 16, 0.72); border-color: #fff;
+}
+.next-concert__label {
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.32em; text-transform: uppercase; opacity: 0.85;
+}
+.next-concert__title {
+  font-family: var(--serif); font-weight: 700; line-height: 1.2;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+}
+.next-concert__title::after { content: "\00a0→"; font-family: var(--sans); font-weight: 400; }
+.next-concert__when {
+  font-family: var(--sans); font-size: 0.95rem; font-weight: 400; opacity: 0.92;
+}
+@media (max-width: 560px) {
+  .next-concert { padding: 14px 18px 16px; margin-bottom: 26px; }
+  /* Clear the site header, which sits over the top of the photograph. */
+  .hero.hero--cover { padding-top: 96px; }
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-block; background: var(--black); color: #fff;

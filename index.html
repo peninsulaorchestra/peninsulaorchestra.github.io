@@ -3,8 +3,35 @@ layout: default
 permalink: /
 head_title: Peninsula Orchestra — Community Concerts in Niagara
 ---
+{%- comment -%}
+  The next concert with a confirmed date, advertised above the welcome. The
+  site only rebuilds when something changes, so js/main.js also hides the
+  notice once the concert's last day has passed.
+{%- endcomment -%}
+{%- assign today = site.time | date: "%Y-%m-%d" -%}
+{%- assign next = nil -%}
+{%- assign by_date = site.events | sort: "date" -%}
+{%- for event in by_date -%}
+  {%- if event.year or event.date_text -%}{%- continue -%}{%- endif -%}
+  {%- assign last_day = event.date_end | default: event.date | date: "%Y-%m-%d" -%}
+  {%- if last_day >= today -%}{%- assign next = event -%}{%- break -%}{%- endif -%}
+{%- endfor -%}
 <section class="hero hero--cover">
   <div class="container">
+    {%- if next %}
+    {%- assign last_day = next.date_end | default: next.date | date: "%Y-%m-%d" %}
+    <a class="next-concert" href="{{ next.url | relative_url }}" data-last-day="{{ last_day }}">
+      <span class="next-concert__label">Next concert</span>
+      <span class="next-concert__title">{{ next.title }}</span>
+      <span class="next-concert__when">
+        {{- next.date | date: "%A, %B %-d" }}
+        {%- if next.time %} · {{ next.time }}{% endif -%}
+      </span>
+      {%- if next.venue %}
+      <span class="next-concert__when">{{ next.venue }}</span>
+      {%- endif %}
+    </a>
+    {%- endif %}
     <h1>Welcome to the {{ site.title }}</h1>
     <p>{{ site.tagline }}</p>
     <div class="hero-actions">
