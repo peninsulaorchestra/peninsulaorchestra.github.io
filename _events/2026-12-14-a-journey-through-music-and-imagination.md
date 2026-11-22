@@ -6,6 +6,7 @@ venue: Trillium United Church
 price: 10
 tickets: "$10 at the door (cash or card). We're also collecting non-perishable food for Community Care of St. Catharines & Thorold."
 poster: journey-through-music-2026.jpg
+poster_effect: journey-gleam
 poster_alt: >-
   A Journey Through Music & Imagination poster — Peninsula Orchestra, a
   concert of stories, places and traditions. Trillium United Church, 415

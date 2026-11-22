@@ -659,3 +659,29 @@ section { padding: 88px 0; }
 @media (prefers-reduced-motion: reduce) {
   .poster-fx { display: none; }
 }
+/* A Journey Through Music & Imagination: a gleam of light passes over the
+   gold title and its flourishes, top-left to bottom-right, then rests. The
+   overlay is clear except for the gleam, so the poster's own gold shows the
+   rest of the time. The mask is the gold lettering cut from the poster.
+
+   The gradient is three times the poster's width with the gleam in the
+   middle; the title spans about 19%–81% of the width, and the two positions
+   below park the gleam fully off either side so each pass starts cleanly. */
+.poster-fx--journey-gleam {
+  -webkit-mask: url("../images/posters/journey-through-music-2026-title-mask.png") 0 0 / 100% 100% no-repeat;
+          mask: url("../images/posters/journey-through-music-2026-title-mask.png") 0 0 / 100% 100% no-repeat;
+  background: linear-gradient(100deg,
+    rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 44%,
+    rgba(255, 252, 235, 0.75) 47.5%, #ffffff 49.2%, #ffffff 50.8%,
+    rgba(255, 252, 235, 0.75) 52.5%,
+    rgba(255, 255, 255, 0) 56%, rgba(255, 255, 255, 0) 100%);
+  background-size: 300% 100%;
+  background-position: 86% 0;
+  /* 5 seconds to cross, then 3 seconds of plain gold before the next pass. */
+  animation: journey-gleam 8s ease-in-out infinite;
+}
+@keyframes journey-gleam {
+  0%          { background-position: 86% 0; }  /* gleam off to the left */
+  62.5%, 100% { background-position: 16% 0; }  /* off to the right; rest */
+}
+
