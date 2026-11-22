@@ -127,10 +127,10 @@ nav.main-nav a.active { color: #fff; border-bottom-color: #fff; }
 /* "Next concert" band along the bottom of the homepage photograph, linking to
    the concert's page. It sits in the hero's flow (not on top of it), so it
    can never cover the welcome text, however short the window. */
-.hero.hero--cover:has(.next-concert) {
+.hero.hero--cover {
   flex-direction: column; padding: 110px 0 0;
 }
-.hero.hero--cover:has(.next-concert) > .container { margin: auto 0; padding-bottom: 48px; }
+.hero.hero--cover > .container { margin: auto 0; padding-bottom: 48px; }
 .next-concert {
   display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center;
   column-gap: 22px; row-gap: 4px; width: 100%;
@@ -155,7 +155,7 @@ nav.main-nav a.active { color: #fff; border-bottom-color: #fff; }
 }
 .next-concert:hover .next-concert__cta { border-bottom-color: #fff; }
 @media (max-width: 700px) {
-  .hero.hero--cover:has(.next-concert) { padding-top: 90px; }
+  .hero.hero--cover { padding-top: 90px; }
   .next-concert { flex-direction: column; align-items: center; text-align: center; padding: 16px 20px 18px; }
   .next-concert__cta { margin-top: 6px; }
 }
